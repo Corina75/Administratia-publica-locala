@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="ro" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Administrația Publică Locală — ghid interactiv</title>
+<meta name="description" content="Ghid interactiv despre administrația publică locală din România: autorități, acte administrative, finanțe publice locale, achiziții publice, patrimoniu, control și transparență.">
+<meta name="author" content="Ghid APL">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231b3a5c'/%3E%3Cpath d='M32 12 54 24H10z' fill='%23d8b45c'/%3E%3Crect x='16' y='27' width='6' height='19' fill='%23fff'/%3E%3Crect x='29' y='27' width='6' height='19' fill='%23fff'/%3E%3Crect x='42' y='27' width='6' height='19' fill='%23fff'/%3E%3Crect x='10' y='48' width='44' height='6' rx='2' fill='%23d8b45c'/%3E%3C/svg%3E">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg:#f5f6f8;
+  --bg-elev:#ffffff;
+  --bg-soft:#eef1f5;
+  --text:#16202c;
+  --text-muted:#5a6675;
+  --text-faint:#84909e;
+  --border:#dde3ea;
+  --border-strong:#c6d0da;
+  --brand:#1b3a5c;
+  --brand-soft:#e8eef5;
+  --brand-text:#1b3a5c;
+  --accent:#a8801f;
+  --accent-soft:#fbf3de;
+  --ok:#1f6f4a;
+  --ok-soft:#e6f4ec;
+  --warn:#9a5b06;
+  --warn-soft:#fdf0dd;
+  --danger:#9c2b2b;
+  --shadow:0 1px 2px rgba(16,32,48,.06), 0 8px 24px -12px rgba(16,32,48,.18);
+  --radius:14px;
+  --radius-sm:9px;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sidebar-w:288px;
+}
+:root[data-theme="dark"]{
+  --bg:#0f151c;
+  --bg-elev:#161e27;
+  --bg-soft:#1c262f;
+  --text:#e7edf3;
+  --text-muted:#a3b1bf;
+  --text-faint:#7d8b99;
+  --border:#26323d;
+  --border-strong:#36454f;
+  --brand:#7fb2e6;
+  --brand-soft:#17252f;
+  --brand-text:#a8cdf3;
+  --accent:#e0b955;
+  --accent-soft:#2a2213;
+  --ok:#57c08c;
+  --ok-soft:#14261d;
+  --warn:#e0a955;
+  --warn-soft:#2a2113;
+  --danger:#e08585;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px -14px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:var(--sans);font-size:16.5px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--brand-text);text-underline-offset:2px}
+a:hover{opacity:.82}
+
+/* ============ LAYOUT ============ */
+.app{display:flex;min-height:100vh}
+.sidebar{
+  width:var(--sidebar-w);flex:0 0 var(--sidebar-w);
+  background:var(--bg-elev);border-right:1px solid var(--border);
+  position:sticky;top:0;height:100vh;overflow-y:auto;z-index:40;
+}
+.brand{
+  display:flex;gap:12px;align-items:center;padding:20px 18px 16px;
+  border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg-elev);z-index:2;
+}
+.brand-mark{
+  width:38px;height:38px;border-radius:10px;flex:0 0 38px;
+  background:linear-gradient(160deg,var(--brand),#2b5b8c);
+  display:grid;place-items:center;color:#fff;font-weight:700;
+}
+:root[data-theme="dark"] .brand-mark{background:linear-gradient(160deg,#21456b,#132c45);color:#cfe3f8}
+.brand-mark svg{width:22px;height:22px}
+.brand-title{font-weight:700;font-size:.97rem;letter-spacing:-.01em;line-height:1.2}
+.brand-sub{font-size:.72rem;color:var(--text-faint);text-transform:uppercase;letter-spacing:.09em;margin-top:2px}
+.nav{padding:14px 10px 40px}
+.nav-group{margin-bottom:16px}
+.nav-group-title{
+  font-size:.68rem;text-transform:uppercase;letter-spacing:.11em;color:var(--text-faint);
+  padding:6px 10px;font-weight:700;
+}
+.nav a{
+  display:flex;gap:10px;align-items:center;padding:7px 10px;border-radius:9px;
+  color:var(--text-muted);text-decoration:none;font-size:.9rem;line-height:1.35;
+}
+.nav a .ico{width:18px;text-align:center;flex:0 0 18px;opacity:.75;font-size:.95rem}
+.nav a:hover{background:var(--bg-soft);color:var(--text);opacity:1}
+.nav a.active{background:var(--brand-soft);color:var(--brand-text);font-weight:600}
+.nav a.active .ico{opacity:1}
+
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.topbar{
+  position:sticky;top:0;z-index:30;display:flex;gap:12px;align-items:center;
+  padding:11px 22px;background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--border);
+}
+.topbar .menu-btn{display:none}
+.search-wrap{position:relative;flex:1;max-width:520px}
+.search-wrap .mag{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-faint);font-size:.95rem}
+#search{
+  width:100%;padding:9px 64px 9px 34px;border-radius:10px;border:1px solid var(--border-strong);
+  background:var(--bg-elev);color:var(--text);font:inherit;font-size:.92rem;
+}
+#search:focus{outline:2px solid var(--brand);outline-offset:1px;border-color:transparent}
+.kbd{
+  position:absolute;right:9px;top:50%;transform:translateY(-50%);
+  font:600 .68rem/1 var(--mono);color:var(--text-faint);border:1px solid var(--border-strong);
+  border-radius:5px;padding:4px 6px;background:var(--bg-soft);pointer-events:none;
+}
+.topbar-actions{margin-left:auto;display:flex;gap:8px;align-items:center}
+.icon-btn{
+  border:1px solid var(--border-strong);background:var(--bg-elev);color:var(--text-muted);
+  width:38px;height:38px;border-radius:10px;cursor:pointer;font-size:1rem;display:grid;place-items:center;
+}
+.icon-btn:hover{color:var(--text);border-color:var(--brand)}
+
+.content{padding:34px 22px 90px;width:100%;max-width:920px;margin:0 auto;flex:1}
+
+/* ============ TYPO ============ */
+.page-eyebrow{
+  font-size:.72rem;text-transform:uppercase;letter-spacing:.13em;color:var(--accent);
+  font-weight:700;margin-bottom:8px;
+}
+h1{font-family:var(--serif);font-size:2.1rem;line-height:1.15;letter-spacing:-.02em;margin:0 0 10px}
+h2{font-family:var(--serif);font-size:1.42rem;line-height:1.25;margin:38px 0 12px;letter-spacing:-.01em;scroll-margin-top:80px}
+h3{font-size:1.05rem;margin:26px 0 8px;letter-spacing:-.005em}
+.lede{font-size:1.05rem;color:var(--text-muted);margin:0 0 6px;max-width:64ch}
+p{margin:0 0 14px}
+.content p, .content li{max-width:none}
+ul.list,ol.list{margin:0 0 16px;padding-left:22px}
+ul.list li,ol.list li{margin-bottom:7px}
+ul.list li::marker{color:var(--accent)}
+ol.list li::marker{color:var(--accent);font-weight:700}
+strong{font-weight:650}
+code{font-family:var(--mono);font-size:.86em;background:var(--bg-soft);padding:1px 5px;border-radius:5px;border:1px solid var(--border)}
+hr.sep{border:0;border-top:1px solid var(--border);margin:34px 0}
+
+/* ============ COMPONENTS ============ */
+.hero{
+  background:linear-gradient(150deg,var(--brand) 0%,#2c5f93 100%);
+  color:#fff;border-radius:var(--radius);padding:30px 28px;margin-bottom:26px;box-shadow:var(--shadow);
+}
+:root[data-theme="dark"] .hero{background:linear-gradient(150deg,#16344f 0%,#1d4467 100%)}
+.hero h1{color:#fff;margin-bottom:10px}
+.hero p{color:#dbe7f3;margin:0;max-width:60ch}
+.hero .page-eyebrow{color:#e8c86e}
+
+.grid{display:grid;gap:14px;margin:0 0 18px}
+.grid.c2{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.grid.c3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card{
+  background:var(--bg-elev);border:1px solid var(--border);border-radius:var(--radius);
+  padding:16px 17px;box-shadow:var(--shadow);
+}
+.card h4{margin:0 0 6px;font-size:.98rem;letter-spacing:-.005em}
+.card p{margin:0;font-size:.9rem;color:var(--text-muted)}
+.card .card-ico{font-size:1.25rem;display:block;margin-bottom:8px}
+
+.note{
+  border-radius:var(--radius-sm);padding:13px 15px;margin:0 0 18px;font-size:.93rem;
+  border:1px solid var(--border);background:var(--bg-elev);border-left:4px solid var(--brand);
+}
+.note b{display:block;margin-bottom:3px;font-size:.87rem;letter-spacing:.01em}
+.note p:last-child{margin-bottom:0}
+.note.info{border-left-color:var(--brand);background:var(--brand-soft)}
+.note.law{border-left-color:var(--accent);background:var(--accent-soft)}
+.note.warn{border-left-color:var(--warn);background:var(--warn-soft)}
+.note.ok{border-left-color:var(--ok);background:var(--ok-soft)}
+
+.table-wrap{overflow-x:auto;margin:0 0 18px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-elev);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:min(100%,520px)}
+caption{caption-side:top;text-align:left;padding:12px 15px 0;font-size:.82rem;color:var(--text-faint)}
+th,td{padding:9px 14px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+thead th{background:var(--bg-soft);font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);font-weight:700;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:var(--bg-soft)}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+.steps{counter-reset:s;list-style:none;padding:0;margin:0 0 18px}
+.steps li{
+  counter-increment:s;position:relative;padding:0 0 16px 46px;border-left:2px solid var(--border);
+  margin-left:15px;
+}
+.steps li:last-child{border-left-color:transparent;padding-bottom:0}
+.steps li::before{
+  content:counter(s);position:absolute;left:-16px;top:-2px;width:30px;height:30px;border-radius:50%;
+  background:var(--brand);color:#fff;display:grid;place-items:center;font-size:.82rem;font-weight:700;
+}
+:root[data-theme="dark"] .steps li::before{background:#21456b;color:#cfe3f8}
+.steps b{display:block;margin-bottom:2px}
+.steps span{color:var(--text-muted);font-size:.92rem}
+
+dl.defs{margin:0 0 18px}
+dl.defs div{padding:10px 0;border-bottom:1px solid var(--border)}
+dl.defs div:last-child{border-bottom:0}
+dl.defs dt{font-weight:650;font-size:.94rem}
+dl.defs dd{margin:2px 0 0;color:var(--text-muted);font-size:.92rem}
+
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px}
+.chip{
+  font-size:.78rem;padding:4px 10px;border-radius:99px;border:1px solid var(--border-strong);
+  background:var(--bg-elev);color:var(--text-muted);white-space:nowrap;
+}
+.chip.accent{background:var(--accent-soft);border-color:transparent;color:var(--accent);font-weight:600}
+
+.links{list-style:none;padding:0;margin:0 0 18px;display:grid;gap:10px}
+.links li a{
+  display:block;padding:13px 15px;border:1px solid var(--border);border-radius:var(--radius-sm);
+  background:var(--bg-elev);text-decoration:none;color:var(--text);
+}
+.links li a:hover{border-color:var(--brand);opacity:1}
+.links b{display:block;font-size:.95rem}
+.links span{font-size:.86rem;color:var(--text-muted)}
+
+/* ---- widgets ---- */
+.calc{
+  border:1px solid var(--border);border-radius:var(--radius);background:var(--bg-elev);
+  padding:18px;margin:0 0 20px;box-shadow:var(--shadow);
+}
+.calc h4{margin:0 0 4px;font-size:1rem}
+.calc .calc-hint{font-size:.85rem;color:var(--text-faint);margin:0 0 14px}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.field label{font-size:.82rem;font-weight:600;color:var(--text-muted)}
+.field input,.field select{
+  padding:9px 11px;border-radius:9px;border:1px solid var(--border-strong);
+  background:var(--bg);color:var(--text);font:inherit;font-size:.93rem;
+}
+.field input:focus,.field select:focus{outline:2px solid var(--brand);outline-offset:1px}
+.calc-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.calc-out{margin-top:6px;border-top:1px dashed var(--border-strong);padding-top:14px}
+.out-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.out-box{background:var(--bg-soft);border-radius:var(--radius-sm);padding:11px 13px}
+.out-box .k{font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;color:var(--text-faint);font-weight:700}
+.out-box .v{font-size:1.32rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.25;margin-top:2px}
+.out-box .v small{font-size:.8rem;font-weight:500;color:var(--text-muted)}
+.verdict{
+  margin-top:12px;padding:13px 15px;border-radius:var(--radius-sm);
+  background:var(--brand-soft);border-left:4px solid var(--brand);font-size:.93rem;
+}
+.verdict b{display:block;font-size:1rem;margin-bottom:3px}
+
+/* ---- search results ---- */
+.results-head{display:flex;align-items:baseline;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.results-head h1{font-size:1.5rem;margin:0}
+.result{
+  display:block;padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);
+  background:var(--bg-elev);text-decoration:none;color:inherit;margin-bottom:10px;
+}
+.result:hover{border-color:var(--brand);opacity:1}
+.result .r-sec{font-size:.73rem;text-transform:uppercase;letter-spacing:.09em;color:var(--accent);font-weight:700}
+.result .r-txt{font-size:.92rem;color:var(--text-muted);margin-top:4px}
+mark{background:var(--accent-soft);color:inherit;border-radius:3px;padding:0 2px;font-weight:600}
+:root[data-theme="dark"] mark{background:#4a3c10;color:#f3dfa4}
+.empty{text-align:center;padding:60px 20px;color:var(--text-faint)}
+
+.pager{display:flex;gap:12px;justify-content:space-between;margin-top:46px;padding-top:22px;border-top:1px solid var(--border)}
+.pager a{
+  display:block;padding:12px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);
+  background:var(--bg-elev);text-decoration:none;color:var(--text);flex:1;max-width:48%;
+}
+.pager a:hover{border-color:var(--brand);opacity:1}
+.pager .dir{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-faint);font-weight:700}
+.pager .ttl{font-size:.93rem;font-weight:600;margin-top:2px}
+.pager a.next{text-align:right;margin-left:auto}
+
+.footer{
+  border-top:1px solid var(--border);padding:22px;text-align:center;
+  font-size:.83rem;color:var(--text-faint);
+}
+.footer a{color:var(--text-muted)}
+
+.toc{
+  background:var(--bg-soft);border-radius:var(--radius);padding:14px 18px;margin:0 0 24px;
+  border:1px solid var(--border);
+}
+.toc b{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-faint)}
+.toc ul{margin:8px 0 0;padding-left:18px;columns:2;column-gap:26px}
+.toc li{margin-bottom:4px;font-size:.89rem;break-inside:avoid}
+
+.flash{animation:flash 1.8s ease}
+@keyframes flash{0%,35%{background:var(--accent-soft);box-shadow:0 0 0 8px var(--accent-soft)}100%{background:transparent;box-shadow:none}}
+
+/* ============ RESPONSIVE ============ */
+.scrim{display:none}
+@media (max-width:900px){
+  body{font-size:16px}
+  .sidebar{
+    position:fixed;left:0;top:0;transform:translateX(-100%);transition:transform .22s ease;
+    box-shadow:var(--shadow);
+  }
+  body.nav-open .sidebar{transform:translateX(0)}
+  body.nav-open .scrim{display:block;position:fixed;inset:0;background:rgba(10,18,26,.5);z-index:35}
+  .topbar .menu-btn{display:grid}
+  .content{padding:24px 16px 70px}
+  h1{font-size:1.7rem}
+  h2{font-size:1.25rem}
+  .kbd{display:none}
+  .toc ul{columns:1}
+  .pager a{max-width:none}
+  .hero{padding:22px 18px}
+}
+@media print{
+  .sidebar,.topbar,.pager,.scrim{display:none!important}
+  .content{max-width:none;padding:0}
+  .card,.note,.table-wrap,.calc{box-shadow:none}
+  body{font-size:11pt}
+  section{display:block!important;page-break-after:always}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="currentColor"><path d="M32 6 60 22H4z"/><rect x="12" y="26" width="7" height="22"/><rect x="28" y="26" width="7" height="22"/><rect x="44" y="26" width="7" height="22"/><rect x="4" y="51" width="56" height="7" rx="2"/></svg>
+      </div>
+      <div>
+        <div class="brand-title">Administrația Publică Locală</div>
+        <div class="brand-sub">Ghid interactiv</div>
+      </div>
+    </div>
+    <nav class="nav" id="nav" aria-label="Cuprins"></nav>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Meniu">☰</button>
+      <div class="search-wrap">
+        <span class="mag" aria-hidden="true">⌕</span>
+        <input id="search" type="search" placeholder="Caută în ghid: cvorum, buget, praguri, PAAP…" autocomplete="off" aria-label="Caută în ghid">
+        <span class="kbd">/</span>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="printBtn" aria-label="Tipărește" title="Tipărește / Salvează ca PDF">⎙</button>
+        <button class="icon-btn" id="themeBtn" aria-label="Schimbă tema" title="Temă deschisă / întunecată">◐</button>
+      </div>
+    </header>
+    <main class="content" id="content" tabindex="-1"></main>
+    <footer class="footer">
+      <p><strong>Ghid interactiv — Administrația Publică Locală din România</strong><br>
+      Material informativ, fără valoare de consultanță juridică. Verificați întotdeauna forma în vigoare a actelor normative pe
+      <a href="https://legislatie.just.ro" target="_blank" rel="noopener">legislatie.just.ro</a>.</p>
+      <p id="footYear"></p>
+    </footer>
+  </div>
+</div>
+<script>
+/* ====================================================================
+   DATE — conținutul ghidului.
+   Structura: secțiuni -> blocuri. Tipuri de blocuri:
+   h (titlu), p (paragraf), ul/ol (listă), table, cards, note, steps,
+   defs (glosar), chips (temeiuri legale), links, widget, toc
+   ==================================================================== */
+const DATA = [
+/* ---------------------------------------------------------------- 1 */
+{
+  id:"acasa", group:"Cadrul general", ico:"⌂",
+  title:"Despre administrația publică locală",
+  eyebrow:"Prezentare",
+  lede:"Ce este administrația publică locală, cine o exercită și cum este organizată în România.",
+  hero:true,
+  blocks:[
+    {t:"p",x:"<b>Administrația publică locală (APL)</b> este ansamblul autorităților și structurilor prin care colectivitățile locale — comune, orașe, municipii și județe — își rezolvă singure treburile publice, în numele și în interesul locuitorilor lor. Spre deosebire de administrația centrală, autoritățile locale nu sunt subordonate Guvernului: ele sunt <b>alese de cetățeni</b> și dispun de <b>autonomie locală</b>, în limitele legii."},
+    {t:"note",k:"info",b:"Ideea de bază",x:"Autonomia locală înseamnă dreptul și capacitatea efectivă a autorităților alese de a soluționa și gestiona, în numele și în interesul colectivității locale, o parte importantă a treburilor publice — pe propria răspundere și în condițiile legii (art. 5 lit. j) și art. 75 din Codul administrativ; art. 3 din Carta europeană a autonomiei locale)."},
+    {t:"h",x:"Cele patru coordonate ale sistemului"},
+    {t:"cards",x:[
+      {i:"🏛️",t:"Colectivitatea locală",x:"Totalitatea locuitorilor din unitatea administrativ-teritorială. Ei aleg autoritățile, pot fi consultați prin referendum și participă la deciziile publice."},
+      {i:"🗳️",t:"Autoritățile alese",x:"Consiliul local / consiliul județean (autorități deliberative) și primarul / președintele consiliului județean (autorități executive)."},
+      {i:"📜",t:"Actele administrative",x:"Hotărâri ale consiliului și dispoziții ale executivului — supuse controlului de legalitate al prefectului și instanței de contencios administrativ."},
+      {i:"💶",t:"Resursele",x:"Buget local propriu, patrimoniu propriu (domeniu public și privat) și personal propriu — aparatul de specialitate."}
+    ]},
+    {t:"h",x:"Ce găsiți în acest ghid"},
+    {t:"p",x:"Ghidul acoperă întregul ciclu de activitate al unei primării sau al unui consiliu județean: de la constituirea autorităților și adoptarea actelor, la buget, achiziții, patrimoniu, servicii publice, urbanism, control și transparență. Fiecare capitol indică temeiul legal, iar două instrumente de calcul (componența consiliului local și pragurile de achiziții) transformă regulile în răspunsuri concrete."},
+    {t:"note",k:"warn",b:"Atenție",x:"Conținutul are caracter informativ și orientativ. Legislația se modifică frecvent (v. capitolul <a href=\"#noutati\">Noutăți legislative</a>); înainte de a fundamenta o decizie, verificați forma în vigoare a actului normativ."},
+    {t:"h",x:"Repere numerice"},
+    {t:"table",head:["Nivel","Structuri","Autoritate deliberativă","Autoritate executivă"],rows:[
+      ["Local — rural","cca 2.860 de comune","Consiliul local","Primarul"],
+      ["Local — urban","cca 320 de orașe și municipii","Consiliul local","Primarul"],
+      ["Județean","41 de județe","Consiliul județean","Președintele consiliului județean"],
+      ["Municipiul București","6 sectoare + municipiul","Consiliile locale de sector / CGMB","Primarii de sector / Primarul general"]
+    ],cap:"Valori aproximative; numărul UAT-urilor se modifică prin lege (înființări, reorganizări, declarări de oraș)."},
+    {t:"note",k:"law",b:"Temeiuri principale",x:"Constituția României, art. 120–123 și art. 138; OUG nr. 57/2019 privind Codul administrativ; Legea nr. 199/1997 de ratificare a Cartei europene a autonomiei locale."}
+  ]
+},
+/* ---------------------------------------------------------------- 2 */
+{
+  id:"principii", group:"Cadrul general", ico:"⚖",
+  title:"Principii și cadru constituțional",
+  eyebrow:"Fundamente",
+  lede:"Principiile pe care se întemeiază administrația publică locală și regulile constituționale care o protejează.",
+  blocks:[
+    {t:"h",x:"Cadrul constituțional"},
+    {t:"table",head:["Articol","Ce prevede"],rows:[
+      ["Art. 120","Administrația publică din unitățile administrativ-teritoriale se întemeiază pe principiile descentralizării, autonomiei locale și deconcentrării serviciilor publice. În unitățile unde cetățenii aparținând unei minorități naționale au o pondere semnificativă, se asigură folosirea limbii materne în relația cu administrația."],
+      ["Art. 121","Autoritățile administrației publice prin care se realizează autonomia locală în comune și orașe sunt consiliile locale alese și primarii aleși. Ele funcționează ca autorități administrative autonome și rezolvă treburile publice din comune și orașe."],
+      ["Art. 122","Consiliul județean este autoritatea administrației publice pentru coordonarea activității consiliilor comunale și orășenești, în vederea realizării serviciilor publice de interes județean."],
+      ["Art. 123","Prefectul este reprezentantul Guvernului pe plan local. Între prefect, pe de o parte, și autoritățile locale, pe de altă parte, <b>nu există raporturi de subordonare</b>. Prefectul poate ataca în contencios administrativ un act pe care îl consideră nelegal — actul atacat este <b>suspendat de drept</b>."],
+      ["Art. 138","Bugetele locale se elaborează, se aprobă și se execută în condițiile legii."]
+    ]},
+    {t:"h",x:"Principiile specifice administrației publice locale"},
+    {t:"p",x:"Codul administrativ (art. 75) așază administrația publică locală pe șapte principii:"},
+    {t:"ul",x:[
+      "<b>Descentralizarea</b> — transferul de competențe administrative și financiare de la nivel central către autoritățile locale, însoțit de resursele necesare.",
+      "<b>Autonomia locală</b> — dreptul și capacitatea efectivă de a gestiona treburile publice locale, pe propria răspundere; are o componentă administrativă și una financiară.",
+      "<b>Deconcentrarea serviciilor publice</b> — redistribuirea de competențe în interiorul aceleiași structuri centrale, către serviciile deconcentrate din teritoriu (nu trebuie confundată cu descentralizarea).",
+      "<b>Eligibilitatea autorităților administrației publice locale</b> — consilierii, primarii și președinții de consilii județene sunt aleși prin vot universal, egal, direct, secret și liber exprimat.",
+      "<b>Cooperarea</b> — autoritățile colaborează pentru realizarea unor obiective de interes comun (asociații de dezvoltare intercomunitară, acorduri de cooperare).",
+      "<b>Responsabilitatea</b> — obligația de a răspunde pentru modul în care sunt gestionate resursele și îndeplinite atribuțiile.",
+      "<b>Constrângerea bugetară</b> — interdicția de a se recurge la transferuri suplimentare pentru acoperirea unei gestiuni deficitare."
+    ]},
+    {t:"h",x:"Principiile generale aplicabile întregii administrații"},
+    {t:"chips",x:["Legalitate","Egalitate","Transparență","Proporționalitate","Satisfacerea interesului public","Imparțialitate","Continuitate","Adaptabilitate"]},
+    {t:"p",x:"Aceste principii (art. 6–12 din Codul administrativ) se aplică atât actelor, cât și conduitei personalului. Ele devin criterii concrete de verificare în controlul de legalitate, în auditul public intern și în controalele Curții de Conturi."},
+    {t:"h",x:"Autonomie locală ≠ independență"},
+    {t:"note",k:"warn",b:"Limitele autonomiei",x:"Autonomia locală privește <b>organizarea, funcționarea, competențele și atribuțiile</b>, precum și <b>gestionarea resurselor</b> care aparțin unității administrativ-teritoriale. Ea se exercită numai <b>în condițiile legii</b> și nu aduce atingere caracterului național, unitar și indivizibil al statului. Actele nelegale pot fi anulate de instanță; gestiunea financiară este verificată de Curtea de Conturi."},
+    {t:"note",k:"law",b:"Temeiuri",x:"Constituția României; OUG nr. 57/2019, art. 5–12 și art. 75–78; Legea nr. 199/1997 (Carta europeană a autonomiei locale); Legea-cadru nr. 195/2006 a descentralizării."}
+  ]
+},
+/* ---------------------------------------------------------------- 3 */
+{
+  id:"uat", group:"Cadrul general", ico:"🗺",
+  title:"Unitățile administrativ-teritoriale",
+  eyebrow:"Organizare",
+  lede:"Comuna, orașul, municipiul și județul: statut juridic, elemente de identitate și structuri asociative.",
+  blocks:[
+    {t:"p",x:"Teritoriul României este organizat administrativ în <b>comune, orașe și județe</b>. Unele orașe sunt declarate <b>municipii</b>. Unitatea administrativ-teritorială (UAT) este <b>persoană juridică de drept public</b>, cu capacitate juridică deplină, patrimoniu propriu și buget propriu; ea este titularul drepturilor și obligațiilor patrimoniale, iar autoritățile alese doar o reprezintă."},
+    {t:"table",head:["UAT","Definiție","Observații"],rows:[
+      ["Comuna","Unitatea de bază în mediul rural, formată din unul sau mai multe sate, dintre care unul este sat-reședință.","Satele componente nu au personalitate juridică proprie."],
+      ["Orașul","Localitate urbană cu rol economic, social, politic și cultural, cu dotări edilitare corespunzătoare.","Poate avea în componență localități rurale (sate aparținătoare)."],
+      ["Municipiul","Oraș cu rol economic, social, politic, cultural și urbanistic însemnat, cu populație și dotări sporite.","Municipiile reședință de județ găzduiesc consiliul județean și instituția prefectului."],
+      ["Județul","Unitatea administrativ-teritorială alcătuită din comune, orașe și municipii, în funcție de condițiile geografice, economice și social-politice.","41 de județe + municipiul București, cu statut aparte."]
+    ]},
+    {t:"h",x:"Elemente de identitate și acte fundamentale"},
+    {t:"cards",x:[
+      {i:"📘",t:"Statutul UAT",x:"Act adoptat prin hotărâre a consiliului local, actualizat periodic; descrie teritoriul, populația, patrimoniul, autoritățile, serviciile publice, cooperarea și participarea cetățenilor. Se publică în Monitorul Oficial Local."},
+      {i:"🛡️",t:"Stema și steagul",x:"Se aprobă prin hotărâre a Guvernului, la propunerea consiliului local/județean, cu avizul Comisiei Naționale de Heraldică (Legea nr. 102/1992)."},
+      {i:"🎖️",t:"Titlul de cetățean de onoare",x:"Se conferă prin hotărâre a consiliului local, în condițiile stabilite prin statutul UAT."},
+      {i:"🏘️",t:"Reședința",x:"Satul, orașul sau municipiul unde își au sediul autoritățile; schimbarea denumirii sau a reședinței se face prin lege, după consultarea populației prin referendum."}
+    ]},
+    {t:"h",x:"Modificarea organizării teritoriale"},
+    {t:"ul",x:[
+      "Înființarea, reorganizarea, delimitarea și schimbarea rangului unei UAT se fac <b>prin lege</b>.",
+      "Orice modificare a limitelor teritoriale, precum și schimbarea denumirii sau a reședinței, se hotărăște <b>numai după consultarea cetățenilor prin referendum local</b> (Legea nr. 3/2000).",
+      "Delimitarea teritorială se materializează prin planuri de delimitare cadastrală și este relevantă pentru impozitare, urbanism și proprietate."
+    ]},
+    {t:"h",x:"Forme de cooperare între UAT-uri"},
+    {t:"table",head:["Formă","La ce folosește","Observații"],rows:[
+      ["Asociația de dezvoltare intercomunitară (ADI)","Realizarea în comun a unor proiecte sau furnizarea în comun a unor servicii publice (apă-canal, salubrizare, transport).","Persoană juridică de drept privat, de utilitate publică; se constituie prin hotărâri ale consiliilor membre."],
+      ["Acordul de cooperare","Servicii sau activități punctuale, inclusiv asigurarea unor funcții de specialitate (audit intern, urbanism) pentru UAT-uri mici.","Nu creează persoană juridică nouă."],
+      ["Asocierea cu persoane juridice române sau străine","Finanțarea și realizarea în comun a unor acțiuni, lucrări, servicii sau proiecte de interes public local.","Se aprobă prin hotărâre a consiliului, cu majoritate absolută."],
+      ["Înfrățirea / cooperarea transfrontalieră","Relații de colaborare cu UAT-uri din alte state.","Se aprobă prin hotărâre a consiliului, cu avizul Ministerului Afacerilor Externe."],
+      ["Grupare europeană de cooperare teritorială (GECT)","Proiecte finanțate european, cu parteneri din alte state membre.","Regulamentul (CE) nr. 1082/2006, cu modificările ulterioare."]
+    ]},
+    {t:"note",k:"law",b:"Temeiuri",x:"OUG nr. 57/2019, art. 95–108 (organizarea teritoriului), art. 89–92 (cooperarea); Legea nr. 2/1968 privind organizarea administrativă a teritoriului; Legea nr. 3/2000 privind organizarea referendumului; Legea nr. 351/2001 privind Planul de amenajare a teritoriului național — rețeaua de localități."}
+  ]
+},
+/* ---------------------------------------------------------------- 4 */
+{
+  id:"consiliul-local", group:"Autorități și personal", ico:"👥",
+  title:"Consiliul local",
+  eyebrow:"Autoritate deliberativă",
+  lede:"Componență, constituire, ședințe, cvorum, majorități și atribuții — plus un calculator pentru numărul de consilieri și majoritățile necesare.",
+  blocks:[
+    {t:"p",x:"Consiliul local este <b>autoritatea deliberativă</b> a comunei, orașului sau municipiului. Este ales pentru un mandat de 4 ani și adoptă <b>hotărâri</b>, care sunt acte administrative cu caracter normativ sau individual."},
+    {t:"h",x:"Componență"},
+    {t:"p",x:"Numărul consilierilor se stabilește prin ordin al prefectului, în funcție de numărul locuitorilor unității administrativ-teritoriale, raportat de Institutul Național de Statistică la 1 ianuarie a anului în care au loc alegerile."},
+    {t:"table",head:["Număr de locuitori","Consilieri locali"],rows:[
+      ["până la 1.500","9"],["1.501 – 3.000","11"],["3.001 – 5.000","13"],["5.001 – 10.000","15"],
+      ["10.001 – 20.000","17"],["20.001 – 50.000","19"],["50.001 – 100.000","21"],["100.001 – 200.000","23"],
+      ["200.001 – 400.000","27"],["peste 400.000","31"],["Consiliul General al Municipiului București","55"]
+    ],cap:"Art. 112 din Codul administrativ."},
+    {t:"widget",w:"consiliu"},
+    {t:"h",x:"Constituirea consiliului"},
+    {t:"steps",x:[
+      {t:"Validarea mandatelor",x:"Judecătoria în a cărei rază teritorială se află circumscripția electorală validează mandatele consilierilor aleși, prin încheiere, pe baza dosarului înaintat de biroul electoral."},
+      {t:"Convocarea ședinței de constituire",x:"Prefectul convoacă consilierii ale căror mandate au fost validate, în termenul prevăzut de lege."},
+      {t:"Depunerea jurământului",x:"Consilierii al căror mandat a fost validat depun jurământul; refuzul de a depune jurământul atrage încetarea mandatului."},
+      {t:"Consiliul legal constituit",x:"Consiliul este legal constituit dacă mandatele a cel puțin două treimi din numărul consilierilor au fost validate și consilierii au depus jurământul; constituirea se constată prin hotărâre."},
+      {t:"Organizarea",x:"Se aleg viceprimarul (prin vot secret, cu majoritate absolută, din rândul consilierilor), se constituie comisiile de specialitate și se adoptă regulamentul de organizare și funcționare (ROF)."}
+    ]},
+    {t:"h",x:"Ședințele consiliului local"},
+    {t:"table",head:["Tip de ședință","Cine convoacă","Termen de convocare"],rows:[
+      ["Ordinară — cel puțin o dată pe lună","Primarul","cel puțin 5 zile înainte"],
+      ["Extraordinară — ori de câte ori este necesar","Primarul sau cel puțin 1/3 din numărul consilierilor în funcție","cel puțin 3 zile înainte"],
+      ["Extraordinară convocată de îndată","Primarul sau 1/3 din consilieri, în situații excepționale (calamități, măsuri urgente)","fără termen minim, motivat în convocare"]
+    ]},
+    {t:"ul",x:[
+      "Convocarea se face în scris, prin intermediul <b>secretarului general</b>, și cuprinde data, ora, locul, proiectul ordinii de zi și materialele aferente.",
+      "Ordinea de zi se aduce la cunoștință publică; suplimentarea ei se aprobă cu majoritatea consilierilor prezenți.",
+      "Ședințele sunt, ca regulă, <b>publice</b>; caracterul nepublic se aprobă cu majoritatea consilierilor prezenți, în situațiile prevăzute de lege.",
+      "Dezbaterile și modul de vot se consemnează în <b>procesul-verbal</b>, semnat de președintele de ședință și de secretarul general; procesul-verbal și documentele dezbătute se publică în Monitorul Oficial Local."
+    ]},
+    {t:"h",x:"Cvorum și majorități"},
+    {t:"note",k:"info",b:"Cvorumul de ședință",x:"Ședința este legal constituită dacă este prezentă <b>majoritatea consilierilor locali în funcție</b>. Prezența este obligatorie; absențele nemotivate atrag sancțiuni potrivit ROF."},
+    {t:"table",head:["Majoritate","Cum se calculează","Se aplică, de regulă, la"],rows:[
+      ["Simplă","Majoritatea consilierilor <b>prezenți</b>","Regula generală pentru adoptarea hotărârilor"],
+      ["Absolută","Majoritatea consilierilor <b>în funcție</b>","Buget local, contractarea de împrumuturi, impozite și taxe locale, participarea la programe de dezvoltare, organizarea și amenajarea teritoriului, asocierea sau cooperarea cu alte autorități, instituții, ONG-uri sau persoane juridice"],
+      ["Calificată (2/3)","Două treimi din consilierii <b>în funcție</b>","Hotărârile privind dobândirea sau înstrăinarea dreptului de proprietate asupra bunurilor imobile"]
+    ],cap:"Art. 5 lit. cc)–ee) și art. 139 din Codul administrativ."},
+    {t:"h",x:"Votul"},
+    {t:"ul",x:[
+      "<b>Vot deschis</b> — regula (prin ridicarea mâinii, apel nominal sau electronic).",
+      "<b>Vot secret</b> — obligatoriu la hotărârile cu caracter individual care privesc <b>persoane</b> (numiri, validări, sancțiuni), dacă prin lege nu se prevede altfel.",
+      "<b>Abținerea obligatorie</b> — consilierul care are un interes patrimonial personal, direct sau prin soț/soție ori rude până la gradul al II-lea, <b>nu participă</b> la deliberare și la adoptarea hotărârii; hotărârea adoptată cu încălcarea acestei reguli este lovită de nulitate (art. 228).",
+      "Consilierul nu poate fi tras la răspundere juridică pentru opiniile politice exprimate în exercitarea mandatului."
+    ]},
+    {t:"h",x:"Atribuțiile consiliului local (art. 129)"},
+    {t:"cards",x:[
+      {i:"🏢",t:"Organizare și funcționare",x:"Aprobă statutul UAT, regulamentul de organizare și funcționare, organigrama, statul de funcții, numărul de personal; înființează instituții și servicii publice de interes local."},
+      {i:"📈",t:"Dezvoltare economico-socială și de mediu",x:"Aprobă bugetul local, virările de credite, contul de execuție, împrumuturile, impozitele și taxele locale, strategiile de dezvoltare, documentațiile tehnico-economice ale investițiilor."},
+      {i:"🏗️",t:"Administrarea domeniului public și privat",x:"Hotărăște darea în administrare, concesionarea, închirierea sau darea în folosință gratuită a bunurilor, vânzarea bunurilor din domeniul privat, însușirea inventarului."},
+      {i:"🚰",t:"Gestionarea serviciilor publice",x:"Asigură alimentarea cu apă, canalizarea, salubrizarea, iluminatul public, transportul local, educația, sănătatea, cultura, asistența socială, situațiile de urgență, evidența persoanelor."},
+      {i:"🤝",t:"Cooperare interinstituțională",x:"Hotărăște asocierea sau cooperarea cu alte autorități, cu persoane juridice române sau străine, aderarea la asociații naționale și internaționale, înfrățirea cu alte unități similare."}
+    ]},
+    {t:"h",x:"Comisiile de specialitate"},
+    {t:"p",x:"Consiliul își organizează comisii de specialitate pe principalele domenii de activitate (buget-finanțe, urbanism, agricultură, învățământ-cultură-sănătate, juridică). Ele analizează proiectele de hotărâre și emit <b>avize consultative</b>, obligatoriu de solicitat înainte de dezbatere. Componența respectă, pe cât posibil, configurația politică a consiliului."},
+    {t:"h",x:"Suspendarea, încetarea și dizolvarea"},
+    {t:"ul",x:[
+      "<b>Mandatul de consilier încetează de drept</b> prin: demisie, incompatibilitate, schimbarea domiciliului în altă UAT, lipsa nemotivată de la 3 ședințe ordinare consecutive sau de la lucrările a două ședințe ordinare consecutive ale comisiilor, imposibilitatea exercitării mandatului mai mult de 6 luni consecutiv, condamnare definitivă, pierderea drepturilor electorale, deces; constatarea se face prin ordin al prefectului.",
+      "<b>Suspendarea</b> intervine de drept în caz de arestare preventivă sau arest la domiciliu.",
+      "<b>Dizolvarea de drept</b> — dacă nu se întrunește timp de două luni consecutiv, deși a fost convocat conform legii; dacă nu a adoptat nicio hotărâre în 3 ședințe ordinare consecutive; dacă numărul consilierilor s-a redus sub jumătate plus unu și nu se poate completa prin supleanți.",
+      "<b>Dizolvarea prin referendum local</b> — la cererea a cel puțin 25% din numărul cetățenilor cu drept de vot; referendumul este valabil dacă s-au prezentat cel puțin 30% dintre alegători."
+    ]},
+    {t:"note",k:"law",b:"Temeiuri",x:"OUG nr. 57/2019, art. 106–147 (consiliul local), art. 228 (conflictul de interese), art. 240 (răspunderea aleșilor locali)."}
+  ]
+},
+/* ---------------------------------------------------------------- 5 */
+{
+  id:"primarul", group:"Autorități și personal", ico:"🎖",
+  title:"Primarul și viceprimarul",
+  eyebrow:"Autoritate executivă",
+  lede:"Mandat, dublă calitate, atribuții, dispoziții, delegare, suspendare și încetarea mandatului.",
+  blocks:[
+    {t:"p",x:"Primarul este <b>autoritatea executivă</b> a comunei, orașului sau municipiului. Este ales prin vot universal, egal, direct, secret și liber exprimat, pentru un mandat de <b>4 ani</b>, pe care îl exercită până la depunerea jurământului de către primarul nou-ales. Primarul <b>reprezintă unitatea administrativ-teritorială în relațiile cu alte autorități, cu persoane fizice sau juridice, precum și în justiție</b>."},
+    {t:"note",k:"info",b:"Dubla calitate a primarului",x:"Primarul acționează atât ca <b>autoritate a administrației publice locale</b> (execută hotărârile consiliului, conduce aparatul de specialitate, gestionează bugetul), cât și ca <b>reprezentant al statului</b> în unitatea administrativ-teritorială — pentru starea civilă, autoritatea tutelară, evidența persoanelor, organizarea alegerilor și a recensământului, sau alte atribuții stabilite prin lege."},
+    {t:"h",x:"Categorii de atribuții (art. 155)"},
+    {t:"table",head:["Categorie","Exemple"],rows:[
+      ["Ca reprezentant al statului","Ofițer de stare civilă și autoritate tutelară; organizarea alegerilor și a referendumurilor; recensământ; sarcini din legi speciale."],
+      ["În relația cu consiliul local","Prezintă proiectele de hotărâre; prezintă raportul anual privind starea economică, socială și de mediu; prezintă informări la cerere; asigură aducerea la îndeplinire a hotărârilor."],
+      ["Privind bugetul local","Este <b>ordonator principal de credite</b>; elaborează proiectul de buget și contul de încheiere a exercițiului bugetar; exercită funcția de angajare, lichidare, ordonanțare a cheltuielilor; verifică încasarea veniturilor."],
+      ["Privind serviciile publice","Coordonează serviciile publice de interes local; ia măsuri pentru organizarea executării hotărârilor; asigură ordinea publică și liniștea locuitorilor prin poliția locală; ia măsuri de prevenire și gestionare a situațiilor de urgență; emite avize, acorduri și autorizații."],
+      ["Alte atribuții","Conduce aparatul de specialitate; numește, sancționează și dispune încetarea raporturilor de serviciu sau de muncă ale personalului (cu excepțiile legale); reprezintă UAT în justiție."]
+    ]},
+    {t:"h",x:"Dispozițiile primarului"},
+    {t:"ul",x:[
+      "Primarul emite <b>dispoziții</b> — acte administrative cu caracter <b>normativ</b> sau <b>individual</b>.",
+      "Dispozițiile devin executorii după ce sunt <b>contrasemnate pentru legalitate de secretarul general</b> al UAT și după aducerea la cunoștință publică (cele normative) sau comunicarea către persoana vizată (cele individuale).",
+      "Secretarul general poate refuza contrasemnarea, motivat, în scris — refuzul nu împiedică emiterea, dar responsabilitatea legalității revine emitentului.",
+      "Se comunică prefectului în termen de <b>10 zile lucrătoare</b> de la emitere și se publică în Monitorul Oficial Local."
+    ]},
+    {t:"h",x:"Viceprimarul"},
+    {t:"ul",x:[
+      "Este ales <b>din rândul consilierilor locali</b>, prin vot secret, cu majoritatea absolută a consilierilor în funcție, la propunerea primarului sau a consilierilor.",
+      "Pe durata exercitării mandatului de viceprimar, <b>mandatul de consilier se suspendă</b> de drept.",
+      "Este <b>subordonat primarului</b> și îl <b>înlocuiește de drept</b> în caz de absență, suspendare sau vacanță a funcției.",
+      "Exercită atribuțiile <b>delegate</b> de primar, prin dispoziție; nu are atribuții proprii stabilite de lege.",
+      "Comunele și orașele au un viceprimar; municipiile și municipiile reședință de județ au doi viceprimari."
+    ]},
+    {t:"h",x:"Suspendarea și încetarea mandatului"},
+    {t:"table",head:["Situație","Efect / procedură"],rows:[
+      ["Arest preventiv sau arest la domiciliu","Suspendare de drept; se constată prin ordin al prefectului. Dacă se constată nevinovăția, primarul are dreptul la despăgubiri."],
+      ["Demisie, deces, incompatibilitate, condamnare definitivă la pedeapsă privativă de libertate, pierderea drepturilor electorale, imposibilitatea exercitării mandatului peste 6 luni","Încetare de drept, constatată prin ordin al prefectului; se organizează alegeri parțiale."],
+      ["Demiterea prin referendum local","La cererea a cel puțin 25% dintre cetățenii cu drept de vot; referendumul se organizează în condițiile Legii nr. 3/2000."],
+      ["Vacanța funcției","Atribuțiile sunt exercitate de drept de viceprimar, până la depunerea jurământului de noul primar."]
+    ]},
+    {t:"note",k:"warn",b:"Incompatibilități și interese",x:"Primarii și viceprimarii se supun regimului incompatibilităților și conflictului de interese (Legea nr. 161/2003, Legea nr. 176/2010). Declarațiile de avere și de interese se depun în 30 de zile de la învestire, anual până la 15 iunie și în 30 de zile de la încetarea mandatului. Constatarea definitivă a stării de incompatibilitate atrage încetarea mandatului."},
+    {t:"note",k:"law",b:"Temeiuri",x:"OUG nr. 57/2019, art. 154–163 și art. 196–200; Legea nr. 161/2003; Legea nr. 176/2010; Legea nr. 3/2000."}
+  ]
+},
+/* ---------------------------------------------------------------- 6 */
+{
+  id:"judet", group:"Autorități și personal", ico:"🏛",
+  title:"Consiliul județean și prefectul",
+  eyebrow:"Nivel județean",
+  lede:"Consiliul județean, președintele acestuia, administrația județeană și rolul prefectului ca reprezentant al Guvernului.",
+  blocks:[
+    {t:"h",x:"Consiliul județean"},
+    {t:"p",x:"Consiliul județean este autoritatea administrației publice locale constituită la nivel județean, pentru <b>coordonarea activității consiliilor comunale, orășenești și municipale</b>, în vederea realizării serviciilor publice de interes județean. Coordonarea nu înseamnă subordonare: consiliile locale rămân autonome."},
+    {t:"table",head:["Numărul locuitorilor județului","Consilieri județeni"],rows:[
+      ["până la 350.000","30"],["350.001 – 500.000","32"],["500.001 – 650.000","34"],["peste 650.000","36"]
+    ],cap:"Art. 174 din Codul administrativ. Președintele consiliului județean nu intră în acest număr."},
+    {t:"h",x:"Atribuții principale"},
+    {t:"ul",x:[
+      "Aprobă bugetul județului, contul de execuție, împrumuturile și taxele speciale județene.",
+      "Aprobă strategiile de dezvoltare economico-socială a județului și documentațiile de amenajare a teritoriului județean (PATJ).",
+      "Administrează domeniul public și privat al județului, inclusiv <b>drumurile județene</b>.",
+      "Asigură servicii publice de interes județean: evidența persoanelor, asistență socială (DGASPC), cultură, sănătate, salvare montană, situații de urgență, managementul deșeurilor.",
+      "Înființează instituții publice și societăți de interes județean; acordă sprijin financiar unor unități de cult, sportive sau culturale, în condițiile legii.",
+      "Repartizează, pe unități administrativ-teritoriale, sumele defalcate din unele venituri ale bugetului de stat destinate echilibrării bugetelor locale."
+    ]},
+    {t:"h",x:"Președintele consiliului județean"},
+    {t:"ul",x:[
+      "Este ales prin <b>vot direct</b>, pe circumscripția județeană, pentru un mandat de 4 ani.",
+      "Reprezintă județul în relațiile cu celelalte autorități publice, cu persoane fizice și juridice, precum și în justiție.",
+      "Este <b>ordonator principal de credite</b> al bugetului județean; conduce aparatul de specialitate al consiliului județean.",
+      "Emite <b>dispoziții</b>, contrasemnate de secretarul general al județului.",
+      "Este ajutat de doi <b>vicepreședinți</b>, aleși de consiliul județean din rândul membrilor săi, prin vot secret, cu majoritate absolută."
+    ]},
+    {t:"h",x:"Prefectul și controlul de tutelă administrativă"},
+    {t:"p",x:"Prefectul este <b>reprezentantul Guvernului</b> în județ. Este înalt funcționar public, numit prin hotărâre a Guvernului. Între prefect și autoritățile locale <b>nu există raporturi de subordonare</b>."},
+    {t:"cards",x:[
+      {i:"🔍",t:"Controlul de legalitate",x:"Verifică legalitatea actelor administrative adoptate sau emise de autoritățile locale, comunicate în termen de 10 zile lucrătoare. Poate solicita motivat reanalizarea actului."},
+      {i:"⚖️",t:"Acțiunea în contencios",x:"Poate ataca actul considerat nelegal la instanța de contencios administrativ. Acțiunea este scutită de taxă de timbru, iar <b>actul atacat este suspendat de drept</b> până la soluționare."},
+      {i:"🏢",t:"Servicii deconcentrate",x:"Conduce activitatea serviciilor publice deconcentrate ale ministerelor din județ și asigură aplicarea programului de guvernare la nivel local."},
+      {i:"🚨",t:"Situații de urgență și ordine publică",x:"Conduce comitetul județean pentru situații de urgență; dispune măsuri de aplicare a legii în domeniul ordinii publice, prin structurile competente."}
+    ]},
+    {t:"note",k:"info",b:"Procedura prealabilă",x:"Înainte de a ataca actul în instanță, prefectul solicită autorității emitente, motivat, reanalizarea actului, cu propunerea de modificare sau revocare. Solicitarea nu suspendă, prin ea însăși, executarea actului."},
+    {t:"note",k:"law",b:"Temeiuri",x:"Constituția, art. 122–123; OUG nr. 57/2019, art. 170–200 (consiliul județean) și art. 249–279 (prefectul); Legea contenciosului administrativ nr. 554/2004."}
+  ]
+},
+/* ---------------------------------------------------------------- 7 */
+{
+  id:"aparat", group:"Autorități și personal", ico:"🧑‍💼",
+  title:"Secretarul general, aparatul de specialitate și funcția publică",
+  eyebrow:"Personal",
+  lede:"Cine execută, în fapt, hotărârile: structura administrativă a primăriei, statutul funcționarilor publici și regulile de integritate.",
+  blocks:[
+    {t:"h",x:"Secretarul general al unității administrativ-teritoriale"},
+    {t:"p",x:"Secretarul general este <b>funcționar public de conducere</b>, numit pe bază de concurs, și reprezintă componenta de stabilitate și legalitate a administrației locale. <b>Nu poate fi membru al unui partid politic</b> și nu poate fi soț, soție sau rudă până la gradul al II-lea cu primarul sau viceprimarul."},
+    {t:"ul",x:[
+      "<b>Avizează pentru legalitate</b> proiectele de hotărâre și <b>contrasemnează</b> hotărârile consiliului și dispozițiile primarului; poate refuza motivat, în scris.",
+      "Asigură <b>convocarea</b> consiliului, pregătirea ședințelor, redactarea proceselor-verbale și evidența hotărârilor.",
+      "Asigură <b>comunicarea către prefect</b> a hotărârilor și dispozițiilor, în termen de 10 zile lucrătoare, și <b>publicarea în Monitorul Oficial Local</b>.",
+      "Coordonează organizarea <b>arhivei</b>, evidența <b>declarațiilor de avere și de interese</b> și relația cu ANI.",
+      "Îndeplinește atribuții de <b>ofițer de stare civilă</b> și de <b>autoritate tutelară</b>, dacă acestea nu sunt delegate altor persoane; instrumentează procedura divorțului pe cale administrativă.",
+      "Coordonează compartimentele de asistență a consiliului și de relații publice și eliberează extrase sau copii de pe actele din arhivă."
+    ]},
+    {t:"h",x:"Aparatul de specialitate"},
+    {t:"p",x:"Aparatul de specialitate al primarului este structura funcțională a primăriei, condusă de primar. Organigrama, statul de funcții și numărul de personal se aprobă prin hotărâre a consiliului local, cu încadrarea în numărul maxim de posturi stabilit potrivit legii."},
+    {t:"cards",x:[
+      {i:"💰",t:"Buget–finanțe–contabilitate",x:"Elaborarea și execuția bugetului, contabilitatea, salarizarea, raportările către Ministerul Finanțelor, controlul financiar preventiv propriu."},
+      {i:"🧾",t:"Impozite și taxe locale",x:"Stabilirea, constatarea, încasarea, urmărirea și executarea silită a creanțelor bugetare locale."},
+      {i:"🛒",t:"Achiziții publice",x:"Programul anual al achizițiilor, derularea procedurilor în SEAP, dosarul achiziției, urmărirea contractelor."},
+      {i:"🏗️",t:"Urbanism și cadastru",x:"Certificate de urbanism, autorizații de construire, disciplina în construcții, documentații de urbanism, registrul agricol."},
+      {i:"👨‍👩‍👧",t:"Stare civilă, asistență socială, registru agricol",x:"Acte de stare civilă, ancheta socială, ajutoare sociale, alocații, tutelă, registrul agricol."},
+      {i:"⚖️",t:"Juridic, resurse umane, achiziții de servicii publice",x:"Reprezentarea în instanță, avizarea contractelor, gestiunea posturilor, evaluarea performanțelor, formare profesională."}
+    ]},
+    {t:"h",x:"Categorii de personal"},
+    {t:"table",head:["Categorie","Statut","Reglementare"],rows:[
+      ["Aleși locali","Mandat obținut prin vot; nu sunt funcționari publici.","Codul administrativ, Partea a V-a"],
+      ["Funcționari publici","Raport de serviciu, exercită prerogative de putere publică; clase I–III, grade profesionale; funcții de execuție și de conducere.","Codul administrativ, Partea a VI-a, Titlul II"],
+      ["Personal contractual","Contract individual de muncă; activități care nu implică exercitarea prerogativelor de putere publică (administrativ, tehnic, deservire).","Codul muncii + Codul administrativ, Titlul III"],
+      ["Demnitari și înalți funcționari publici","Prefect, subprefect, secretar general al instituției prefectului.","Codul administrativ"]
+    ]},
+    {t:"h",x:"Cariera funcționarului public"},
+    {t:"ul",x:[
+      "<b>Ocuparea funcției</b> — prin concurs pe post sau concurs național, transfer, redistribuire, promovare sau exercitare cu caracter temporar.",
+      "<b>Evaluarea performanțelor</b> — anuală, pe baza obiectivelor individuale și a criteriilor de performanță; rezultatul condiționează promovarea.",
+      "<b>Promovarea</b> — în grad profesional, în clasă sau în funcții de conducere, în condițiile legii.",
+      "<b>Drepturi</b> — salariu potrivit Legii-cadru nr. 153/2017, concediu, protecție socială, perfecționare profesională (minimum de ore anual), asociere sindicală.",
+      "<b>Îndatoriri</b> — respectarea legii și a ordinii ierarhice, imparțialitate, păstrarea secretului, conduită profesională, respectarea normelor de conduită (Codul administrativ, art. 368 și urm.).",
+      "<b>Răspunderea</b> — disciplinară, civilă, contravențională sau penală; sancțiunile disciplinare se aplică cu respectarea procedurii prevăzute de lege, după cercetare administrativă."
+    ]},
+    {t:"h",x:"Integritate: incompatibilități și conflict de interese"},
+    {t:"note",k:"warn",b:"Reguli-cheie",x:"Funcționarii publici și aleșii locali nu pot deține funcții sau activități incompatibile (art. 87–94 din Legea nr. 161/2003). Conflictul de interese apare atunci când persoana are un interes personal de natură patrimonială care ar putea influența îndeplinirea atribuțiilor. <b>Declarațiile de avere și de interese</b> se depun în 30 de zile de la numire, anual până la <b>15 iunie</b> și în 30 de zile de la încetarea raportului de serviciu (Legea nr. 176/2010). Nedepunerea sau depunerea cu întârziere atrage sancțiuni."},
+    {t:"note",k:"law",b:"Temeiuri",x:"OUG nr. 57/2019, art. 240–244 (secretarul general), Partea a VI-a (statutul funcționarilor publici și al personalului contractual); Legea nr. 161/2003; Legea nr. 176/2010; Legea-cadru nr. 153/2017; Legea nr. 165/2026 (reforma carierei în administrația publică)."}
+  ]
+},
+/* ---------------------------------------------------------------- 8 */
+{
+  id:"acte", group:"Acte și transparență", ico:"📜",
+  title:"Actele administrative și controlul de legalitate",
+  eyebrow:"Acte",
+  lede:"Hotărâri și dispoziții: cum se pregătesc, se adoptă, se comunică, intră în vigoare și cum pot fi contestate.",
+  blocks:[
+    {t:"h",x:"Tipuri de acte"},
+    {t:"table",head:["Act","Emitent","Caracter"],rows:[
+      ["Hotărâre (HCL / HCJ)","Consiliul local / consiliul județean","Normativ (reguli generale) sau individual (privește persoane determinate)"],
+      ["Dispoziție","Primarul / președintele consiliului județean","Normativ sau individual"],
+      ["Ordin","Prefectul","Normativ sau individual (constatarea încetării mandatelor, stabilirea numărului de consilieri etc.)"]
+    ]},
+    {t:"h",x:"Traseul unui proiect de hotărâre"},
+    {t:"steps",x:[
+      {t:"Inițierea",x:"Proiectul poate fi inițiat de primar, de consilieri locali sau de cetățeni (inițiativă cetățenească, în condițiile legii)."},
+      {t:"Fundamentarea",x:"Referat de aprobare al inițiatorului + raport al compartimentului de resort din aparatul de specialitate; alte documente justificative (note de fundamentare, devize, expertize)."},
+      {t:"Avizul de legalitate",x:"Secretarul general avizează proiectul pentru legalitate; poate formula obiecții motivate, în scris."},
+      {t:"Transparența decizională",x:"Pentru proiectele de acte normative: anunț public cu cel puțin 30 de zile lucrătoare înainte și minimum 10 zile calendaristice pentru propuneri (Legea nr. 52/2003)."},
+      {t:"Avizele comisiilor",x:"Comisiile de specialitate analizează proiectul și emit avize consultative."},
+      {t:"Dezbaterea și votul",x:"Înscriere pe ordinea de zi, dezbatere în ședință, vot cu majoritatea cerută de lege, consemnare în procesul-verbal."},
+      {t:"Semnarea și contrasemnarea",x:"Hotărârea se semnează de președintele de ședință și se contrasemnează pentru legalitate de secretarul general."},
+      {t:"Comunicarea și publicarea",x:"Comunicare la prefect în 10 zile lucrătoare; publicare în Monitorul Oficial Local; comunicare individuală, după caz."}
+    ]},
+    {t:"h",x:"Intrarea în vigoare"},
+    {t:"table",head:["Tip de act","Când produce efecte"],rows:[
+      ["Act administrativ cu caracter <b>normativ</b>","De la data <b>aducerii la cunoștință publică</b> — care se realizează, ca regulă, în 5 zile de la comunicarea oficială către prefect, dacă în cuprinsul actului nu se prevede o dată ulterioară."],
+      ["Act administrativ cu caracter <b>individual</b>","De la data <b>comunicării</b> către persoana vizată."]
+    ]},
+    {t:"note",k:"info",b:"Monitorul Oficial Local (MOL)",x:"Fiecare UAT are obligația de a organiza, în format electronic, <b>Monitorul Oficial Local</b>, structurat pe șase secțiuni: (1) statutul UAT; (2) regulamentele privind procedurile administrative; (3) hotărârile autorității deliberative; (4) dispozițiile autorității executive; (5) documente și informații financiare; (6) alte documente. MOL se afișează și la sediu, pentru persoanele fără acces la internet (art. 197–199 și Anexa nr. 1 la Codul administrativ)."},
+    {t:"h",x:"Nulitatea, revocarea și suspendarea"},
+    {t:"ul",x:[
+      "<b>Nulitatea</b> — sancțiunea actului adoptat cu încălcarea legii; poate fi constatată de instanța de contencios administrativ. Exemplu expres: hotărârea adoptată cu votul unui consilier aflat în conflict de interese.",
+      "<b>Revocarea</b> — retragerea actului de către emitent, pentru motive de nelegalitate sau de oportunitate. Actele individuale intrate în circuitul civil și care au produs efecte juridice <b>nu mai pot fi revocate</b>.",
+      "<b>Suspendarea</b> — încetarea temporară a efectelor: de drept, când actul este atacat de prefect; prin hotărârea instanței, în cazurile prevăzute de Legea nr. 554/2004."
+    ]},
+    {t:"h",x:"Contenciosul administrativ"},
+    {t:"table",head:["Etapă","Termen"],rows:[
+      ["Plângere prealabilă la autoritatea emitentă (pentru actele individuale)","30 de zile de la comunicarea actului"],
+      ["Introducerea acțiunii la instanța de contencios administrativ","6 luni de la răspunsul la plângerea prealabilă sau de la expirarea termenului de răspuns"],
+      ["Termen maxim (motive temeinice)","1 an de la data comunicării actului"],
+      ["Acte administrative <b>normative</b>","Pot fi atacate <b>oricând</b>; plângerea prealabilă nu este obligatorie"],
+      ["Acțiunea prefectului și a Avocatului Poporului","Fără plângere prealabilă; scutită de taxă de timbru"]
+    ],cap:"Legea nr. 554/2004 a contenciosului administrativ."},
+    {t:"note",k:"law",b:"Temeiuri",x:"OUG nr. 57/2019, art. 196–200 și Anexa nr. 1; Legea nr. 554/2004; Legea nr. 24/2000 privind normele de tehnică legislativă."}
+  ]
+},
+/* ---------------------------------------------------------------- 9 */
+{
+  id:"transparenta", group:"Acte și transparență", ico:"🔎",
+  title:"Transparență, acces la informații și participare",
+  eyebrow:"Deschidere",
+  lede:"Obligațiile de publicare și consultare și drepturile cetățeanului de a ști și de a participa.",
+  blocks:[
+    {t:"h",x:"Transparența decizională (Legea nr. 52/2003)"},
+    {t:"table",head:["Obligație","Termen / condiție"],rows:[
+      ["Anunțul privind elaborarea unui proiect de act normativ (publicat pe site, afișat la sediu, transmis mass-mediei locale)","cu cel puțin <b>30 de zile lucrătoare</b> înainte de supunerea spre analiză, avizare și adoptare"],
+      ["Termen pentru primirea de propuneri, sugestii și opinii","minimum <b>10 zile calendaristice</b> de la publicarea anunțului"],
+      ["Dezbatere publică","Obligatorie dacă a fost solicitată în scris de o asociație legal constituită sau de o altă autoritate publică"],
+      ["Anunțul privind ședința publică","cu cel puțin <b>3 zile</b> înainte de desfășurare"],
+      ["Minuta ședinței publice","Se întocmește și se publică, incluzând votul nominal, când este cazul"],
+      ["Raportul anual privind transparența decizională","Se întocmește și se face public"]
+    ]},
+    {t:"h",x:"Accesul la informațiile de interes public (Legea nr. 544/2001)"},
+    {t:"ul",x:[
+      "<b>Informații comunicate din oficiu</b>: actele normative care reglementează organizarea și funcționarea, structura organizatorică, numele conducerii și ale funcționarului responsabil, coordonatele de contact, sursele financiare, bugetul și bilanțul contabil, programele și strategiile, lista documentelor de interes public, modalitățile de contestare.",
+      "<b>Termen de răspuns</b>: <b>10 zile</b> de la înregistrarea cererii; pentru informații complexe, <b>30 de zile</b>, cu înștiințarea solicitantului în termenul inițial de 10 zile.",
+      "<b>Refuzul</b> se comunică motivat, în termen de 5 zile de la primirea cererii.",
+      "<b>Căi de atac</b>: reclamație administrativă la conducătorul autorității (30 de zile de la comunicarea refuzului), apoi plângere la instanța de contencios administrativ.",
+      "<b>Excepții</b>: informații clasificate, date cu caracter personal, informații privind activitățile comerciale protejate, procedurile judiciare în curs, cele care afectează principiul concurenței loiale."
+    ]},
+    {t:"note",k:"warn",b:"Protecția datelor",x:"Publicarea documentelor în Monitorul Oficial Local și răspunsurile la cererile de informații se fac cu <b>anonimizarea datelor cu caracter personal</b>, potrivit Regulamentului (UE) 2016/679 (GDPR) și Legii nr. 190/2018. Fiecare UAT trebuie să desemneze un responsabil cu protecția datelor (DPO)."},
+    {t:"h",x:"Instrumente de participare a cetățenilor"},
+    {t:"cards",x:[
+      {i:"🗳️",t:"Referendumul local",x:"Pentru probleme de interes deosebit, pentru demiterea primarului sau dizolvarea consiliului, pentru modificarea limitelor teritoriale (Legea nr. 3/2000)."},
+      {i:"✍️",t:"Inițiativa cetățenească",x:"Cetățenii pot propune consiliului local proiecte de hotărâri, susținute prin liste de semnături, în condițiile legii."},
+      {i:"🎤",t:"Adunările cetățenești",x:"Se pot convoca pe sate sau cartiere pentru dezbaterea unor probleme locale; propunerile se consemnează și se supun consiliului."},
+      {i:"💡",t:"Bugetarea participativă",x:"Practică voluntară, aprobată prin regulament local, prin care o parte din buget este alocată proiectelor propuse și votate de cetățeni."},
+      {i:"📩",t:"Petiții",x:"Soluționarea petițiilor se face în 30 de zile, cu posibilitatea prelungirii cu 15 zile (OG nr. 27/2002)."},
+      {i:"👁️",t:"Participarea la ședințe",x:"Ședințele consiliului sunt publice; persoanele interesate pot asista, iar cele care au un interes legitim pot lua cuvântul, potrivit regulamentului."}
+    ]},
+    {t:"note",k:"law",b:"Temeiuri",x:"Legea nr. 52/2003; Legea nr. 544/2001 și HG nr. 123/2002; OG nr. 27/2002; Legea nr. 3/2000; OUG nr. 57/2019, art. 78–85 și Anexa nr. 1; Regulamentul (UE) 2016/679."}
+  ]
+},
+/* --------------------------------------------------------------- 10 */
+{
+  id:"finante", group:"Bani publici", ico:"💰",
+  title:"Finanțele publice locale și bugetul",
+  eyebrow:"Buget",
+  lede:"Principiile bugetare, structura bugetului local, calendarul, veniturile, cheltuielile și datoria publică locală.",
+  blocks:[
+    {t:"p",x:"Bugetul local este documentul prin care se prevăd și se aprobă, pentru fiecare an, <b>veniturile și cheltuielile</b> unității administrativ-teritoriale. Se aprobă prin hotărâre a consiliului local sau județean, cu <b>majoritate absolută</b>, iar execuția lui este responsabilitatea ordonatorului principal de credite."},
+    {t:"h",x:"Principiile și regulile bugetare"},
+    {t:"ul",x:[
+      "<b>Universalitatea</b> — veniturile și cheltuielile se includ în buget în totalitate, în sume brute.",
+      "<b>Transparența și publicitatea</b> — proiectul și execuția se publică; dezbaterea este publică.",
+      "<b>Unitatea</b> — veniturile și cheltuielile se înscriu într-un singur document.",
+      "<b>Anualitatea</b> — bugetul se aprobă pentru un exercițiu bugetar egal cu anul calendaristic.",
+      "<b>Specializarea bugetară</b> — veniturile și cheltuielile se înscriu pe surse și destinații, potrivit clasificației bugetare.",
+      "<b>Unitatea monetară</b> — operațiunile se exprimă în lei.",
+      "<b>Echilibrul</b> — cheltuielile trebuie să fie echilibrate cu veniturile; <b>bugetul local nu se aprobă cu deficit</b>.",
+      "<b>Solidaritatea, autonomia locală financiară, proporționalitatea și consultarea</b> — reguli care guvernează relațiile dintre bugetul de stat și bugetele locale."
+    ]},
+    {t:"h",x:"Structura bugetului local"},
+    {t:"table",head:["Componentă","Conținut"],rows:[
+      ["Secțiunea de funcționare","Venituri și cheltuieli curente, necesare funcționării curente a instituțiilor și serviciilor publice (salarii, bunuri și servicii, transferuri curente, dobânzi)."],
+      ["Secțiunea de dezvoltare","Cheltuieli de capital, proiecte cu finanțare europeană, transferuri pentru investiții; se finanțează din excedent, împrumuturi, sume din secțiunea de funcționare, fonduri externe."],
+      ["Bugetul instituțiilor finanțate integral sau parțial din venituri proprii","Bugete anexă, aprobate odată cu bugetul local."],
+      ["Bugetul creditelor interne / externe și al fondurilor externe nerambursabile","Evidențiază distinct împrumuturile și fondurile europene."]
+    ]},
+    {t:"h",x:"Calendarul bugetar"},
+    {t:"steps",x:[
+      {t:"Scrisoarea-cadru",x:"Ministerul Finanțelor transmite, până la 1 iunie, limitele și metodologia pentru elaborarea proiectelor de buget."},
+      {t:"Elaborarea proiectului",x:"Ordonatorul principal de credite elaborează proiectul de buget pe baza propunerilor ordonatorilor subordonați și a estimărilor de venituri proprii."},
+      {t:"Publicarea proiectului",x:"Proiectul se publică în presa locală sau se afișează la sediul UAT; locuitorii pot depune contestații în <b>15 zile</b> de la publicare."},
+      {t:"Aprobarea",x:"Bugetul se aprobă prin hotărâre a autorității deliberative, în termen de <b>45 de zile</b> de la data publicării legii bugetului de stat în Monitorul Oficial."},
+      {t:"Execuția",x:"Repartizarea pe trimestre, deschiderea de credite, angajarea și plata cheltuielilor, încasarea veniturilor, rectificări bugetare, virări de credite."},
+      {t:"Încheierea exercițiului",x:"Întocmirea contului anual de execuție și a situațiilor financiare; aprobarea contului de execuție prin hotărâre a consiliului; stabilirea excedentului sau deficitului."}
+    ]},
+    {t:"note",k:"warn",b:"Dacă bugetul nu este aprobat la timp",x:"Până la aprobarea bugetului, cheltuielile se efectuează lunar în limita a <b>1/12 din prevederile bugetului anului precedent</b>, cu excepția cazurilor deosebite, justificate. Neaprobarea în termenele legale atrage măsuri prevăzute de Legea nr. 273/2006 privind finanțarea."},
+    {t:"h",x:"Veniturile bugetului local"},
+    {t:"table",head:["Categorie","Exemple"],rows:[
+      ["Venituri proprii","Impozite și taxe locale (clădiri, teren, mijloace de transport), taxe pentru eliberarea de avize și autorizații, venituri din concesiuni și închirieri, din vânzarea bunurilor, din amenzi, taxe speciale."],
+      ["Cote și sume defalcate din impozitul pe venit","Repartizate potrivit legii bugetului de stat; o parte este destinată echilibrării bugetelor locale, prin consiliul județean."],
+      ["Sume defalcate din TVA","Pentru finanțarea unor cheltuieli descentralizate: învățământ, asistență socială, drumuri, echilibrare."],
+      ["Subvenții","De la bugetul de stat sau de la alte bugete, pentru programe și investiții determinate."],
+      ["Fonduri externe nerambursabile","Programe operaționale, PNRR, Fondul pentru Mediu, programe transfrontaliere."],
+      ["Donații și sponsorizări","Se cuprind în buget prin rectificare, cu respectarea destinației."]
+    ]},
+    {t:"h",x:"Excedentul și datoria publică locală"},
+    {t:"ul",x:[
+      "<b>Excedentul</b> anual se reportează în anul următor și se utilizează, prin hotărâre a autorității deliberative, pentru finanțarea secțiunii de dezvoltare, pentru acoperirea temporară a golurilor de casă sau pentru acoperirea deficitului secțiunii de funcționare.",
+      "<b>Împrumuturile</b> se contractează numai cu avizul <b>Comisiei de autorizare a împrumuturilor locale (CAÎL)</b> și cu aprobarea autorității deliberative, cu majoritate absolută.",
+      "<b>Plafonul de îndatorare</b>: totalul datoriilor anuale (rate, dobânzi, comisioane) nu poate depăși <b>30% din media veniturilor proprii ale ultimilor 3 ani</b>, cu excepțiile prevăzute de lege.",
+      "<b>Garanțiile</b> acordate de UAT se înregistrează în registrul de evidență a datoriei publice locale și a garanțiilor locale."
+    ]},
+    {t:"note",k:"law",b:"Temeiuri",x:"Legea nr. 273/2006 privind finanțele publice locale; Legea nr. 500/2002 privind finanțele publice; legile anuale ale bugetului de stat; Ordinul MFP nr. 1954/2005 privind clasificația indicatorilor finanțelor publice."}
+  ]
+},
+/* --------------------------------------------------------------- 11 */
+{
+  id:"executie", group:"Bani publici", ico:"📊",
+  title:"Execuția bugetară, ALOP și contabilitatea publică",
+  eyebrow:"Execuție",
+  lede:"Cele patru faze ale cheltuielii, controlul financiar preventiv, contabilitatea și raportările obligatorii.",
+  blocks:[
+    {t:"h",x:"Ordonatorii de credite"},
+    {t:"table",head:["Tip","Cine este","Rol"],rows:[
+      ["Ordonator <b>principal</b>","Primarul / președintele consiliului județean","Repartizează creditele bugetare aprobate, aprobă efectuarea cheltuielilor, răspunde de utilizarea legală și eficientă a fondurilor."],
+      ["Ordonator <b>secundar</b>","Conducătorii instituțiilor cu ordonatori în subordine","Repartizează credite către ordonatorii terțiari și aprobă cheltuieli proprii."],
+      ["Ordonator <b>terțiar</b>","Conducătorii instituțiilor subordonate (școli, spitale, servicii publice)","Utilizează creditele repartizate exclusiv pentru destinațiile aprobate."]
+    ]},
+    {t:"note",k:"warn",b:"Răspunderea ordonatorului",x:"Ordonatorii de credite răspund de: angajarea și utilizarea creditelor în limita și cu destinația aprobată; realizarea veniturilor; integritatea bunurilor; organizarea contabilității și a controlului financiar preventiv propriu; raportarea la termen a situațiilor financiare."},
+    {t:"h",x:"Fazele execuției cheltuielilor — ALOP"},
+    {t:"steps",x:[
+      {t:"Angajarea",x:"Actul prin care se creează sau se constată obligații de plată: contract, comandă, decizie. Presupune <b>angajament bugetar</b> (rezervarea creditului) și <b>angajament legal</b> (documentul juridic). Propunerea de angajare și angajamentul bugetar se supun vizei de control financiar preventiv."},
+      {t:"Lichidarea",x:"Verificarea existenței obligației de plată și a realității serviciului efectuat („bun de plată”), pe baza documentelor justificative: factură, proces-verbal de recepție, situație de lucrări."},
+      {t:"Ordonanțarea",x:"Actul prin care se dispune plata: ordonanțarea de plată, semnată de ordonatorul de credite, cu viză de control financiar preventiv."},
+      {t:"Plata",x:"Achitarea efectivă a sumei, prin trezorerie, în limita disponibilului și a creditelor deschise. Se efectuează de persoana cu atribuții financiar-contabile."}
+    ]},
+    {t:"note",k:"info",b:"Separarea atribuțiilor",x:"Primele trei faze (angajare, lichidare, ordonanțare) sunt în competența ordonatorului de credite, iar plata se efectuează de persoana desemnată cu atribuții financiar-contabile. Aceeași persoană nu poate exercita, pentru aceeași operațiune, atât atribuții de ordonanțare, cât și de plată."},
+    {t:"h",x:"Controlul financiar preventiv propriu (CFPP)"},
+    {t:"ul",x:[
+      "Se exercită asupra tuturor operațiunilor care afectează fondurile publice sau patrimoniul public, <b>înainte</b> de aprobarea lor.",
+      "Viza se acordă de persoane desemnate prin act de decizie internă, cu pregătire de specialitate; persoana care acordă viza <b>nu poate fi implicată</b> în efectuarea operațiunii supuse vizei.",
+      "Se organizează pe baza unui <b>cadru general</b> și a unui <b>cadru specific</b> de operațiuni supuse vizei, aprobat de conducătorul entității.",
+      "Refuzul de viză se face în scris și motivat; operațiunea poate fi efectuată <b>pe răspunderea ordonatorului</b>, cu informarea structurilor de control.",
+      "Se raportează trimestrial situația operațiunilor vizate și a refuzurilor de viză."
+    ]},
+    {t:"h",x:"Contabilitatea instituțiilor publice"},
+    {t:"ul",x:[
+      "Se conduce în <b>partidă dublă</b>, pe bază de <b>angajamente</b> (contabilitate de drepturi și obligații) și, complementar, pe bază de <b>numerar</b> pentru execuția bugetară.",
+      "Planul de conturi și normele metodologice sunt aprobate prin <b>OMFP nr. 1.917/2005</b>, cu modificările ulterioare.",
+      "Registrele obligatorii: Registrul-jurnal, Registrul-inventar, Cartea mare.",
+      "<b>Inventarierea</b> elementelor de natura activelor, datoriilor și capitalurilor proprii se efectuează cel puțin o dată pe an, potrivit <b>OMFP nr. 2.861/2009</b>.",
+      "<b>Reevaluarea</b> activelor fixe corporale de natura construcțiilor și terenurilor se efectuează cel puțin o dată la 3 ani (OG nr. 81/2003).",
+      "<b>Amortizarea</b> activelor fixe se calculează liniar, potrivit duratelor normale de funcționare (HG nr. 2.139/2004)."
+    ]},
+    {t:"h",x:"Raportări și situații financiare"},
+    {t:"table",head:["Raportare","Periodicitate","Conținut uzual"],rows:[
+      ["Situații financiare trimestriale","Trimestrial","Bilanț, contul de rezultat patrimonial, contul de execuție, situația activelor și datoriilor, note explicative, anexe."],
+      ["Situații financiare anuale","Anual","Aceleași formulare, în formă completă, însoțite de raportul de analiză pe bază de bilanț."],
+      ["Contul anual de execuție bugetară","Anual","Se aprobă prin hotărâre a autorității deliberative; se publică în Monitorul Oficial Local."],
+      ["Raportări prin sistemul FOREXEBUG","Lunar / la operațiune","Buget individual, angajamente legale și bugetare, plăți, balanța de verificare; controlul angajamentelor se realizează la nivelul trezoreriei."],
+      ["Raportarea privind plățile restante și arieratele","Lunar","Monitorizarea obligațiilor neachitate la termen."]
+    ]},
+    {t:"note",k:"warn",b:"Reguli frecvent verificate în control",x:"Angajarea de cheltuieli fără credite bugetare aprobate; efectuarea de plăți fără documente justificative; depășirea plafonului de casă; neînregistrarea în contabilitate a bunurilor din domeniul public; nereevaluarea și neamortizarea activelor; neconstituirea garanțiilor materiale ale gestionarilor (Legea nr. 22/1969)."},
+    {t:"note",k:"law",b:"Temeiuri",x:"Legea contabilității nr. 82/1991; OMFP nr. 1.792/2002 (ALOP); OG nr. 119/1999 și OMFP nr. 923/2014 (CFPP); OMFP nr. 1.917/2005; OMFP nr. 2.861/2009; Legea nr. 273/2006."}
+  ]
+},
+/* --------------------------------------------------------------- 12 */
+{
+  id:"fiscalitate", group:"Bani publici", ico:"🧾",
+  title:"Impozite și taxe locale",
+  eyebrow:"Venituri proprii",
+  lede:"Ce impozite și taxe stabilește consiliul local, cum se stabilesc, se încasează și se execută silit.",
+  blocks:[
+    {t:"h",x:"Impozitele și taxele locale"},
+    {t:"table",head:["Categorie","Obiect","Observații"],rows:[
+      ["Impozitul / taxa pe clădiri","Clădiri rezidențiale, nerezidențiale și mixte, deținute de persoane fizice și juridice","Taxa pe clădiri se datorează de concesionari, locatari sau administratori ai clădirilor din proprietate publică/privată a statului sau a UAT"],
+      ["Impozitul / taxa pe teren","Terenuri intravilane și extravilane","Se calculează în funcție de rang, zonă, categorie de folosință și suprafață"],
+      ["Impozitul pe mijloacele de transport","Vehicule înmatriculate sau înregistrate în România","În funcție de capacitatea cilindrică, masă, norme de poluare"],
+      ["Taxa pentru eliberarea certificatelor, avizelor și autorizațiilor","Certificat de urbanism, autorizație de construire, autorizație de funcționare","Cuantumurile se stabilesc prin hotărâre a consiliului local, în limitele legii"],
+      ["Taxa pentru folosirea mijloacelor de reclamă și publicitate","Panouri, afișaje, contracte de publicitate","Se declară și se plătește potrivit Codului fiscal"],
+      ["Impozitul pe spectacole","Manifestări artistice, competiții sportive","Cotă aplicată încasărilor din vânzarea biletelor"],
+      ["Taxe speciale","Servicii publice locale înființate în interesul persoanelor fizice și juridice","Se instituie prin hotărâre a consiliului, cu regulament privind modul de calcul și destinația sumelor"],
+      ["Alte taxe locale","Utilizarea temporară a locurilor publice, vizitarea muzeelor, deținerea de utilaje, vehicule lente","Nivelurile se aprobă anual prin hotărâre a consiliului local"]
+    ]},
+    {t:"h",x:"Cum se stabilesc"},
+    {t:"ul",x:[
+      "Nivelurile impozitelor și taxelor locale se stabilesc prin <b>hotărâre a consiliului local</b>, în limitele și condițiile Codului fiscal.",
+      "Sumele fixe prevăzute de Codul fiscal se <b>indexează anual</b> cu rata inflației, prin hotărâre adoptată, ca regulă, până la <b>30 aprilie</b> a anului curent, pentru anul fiscal următor.",
+      "Consiliul local poate acorda <b>scutiri și reduceri</b> în cazurile permise expres de Codul fiscal (clădiri utilizate de ONG-uri, persoane cu venituri reduse, clădiri afectate de calamități, reabilitări termice etc.).",
+      "Se poate institui o <b>bonificație de până la 10%</b> pentru plata integrală a impozitului până la 31 martie, precum și majorări de până la 500% pentru clădirile și terenurile neîngrijite.",
+      "Hotărârea privind impozitele și taxele locale se supune procedurii de <b>transparență decizională</b> și se publică în Monitorul Oficial Local."
+    ]},
+    {t:"h",x:"Termene de plată"},
+    {t:"table",head:["Obligație","Termen"],rows:[
+      ["Impozitul pe clădiri, pe teren și pe mijloacele de transport — plata în două rate egale","<b>31 martie</b> și <b>30 septembrie</b>"],
+      ["Plata integrală anticipată cu bonificație","până la <b>31 martie</b>"],
+      ["Declararea dobândirii / înstrăinării unei clădiri, unui teren sau a unui mijloc de transport","30 de zile de la data dobândirii / înstrăinării"],
+      ["Depunerea declarației de impunere pentru clădirile nerezidențiale (raport de evaluare)","Potrivit termenelor din Codul fiscal, cu actualizare periodică a valorii impozabile"]
+    ]},
+    {t:"h",x:"Colectarea și executarea silită"},
+    {t:"steps",x:[
+      {t:"Stabilirea creanței",x:"Prin declarație de impunere sau din oficiu, prin decizie de impunere emisă de organul fiscal local."},
+      {t:"Scadența și accesoriile",x:"După scadență se datorează majorări de întârziere de 1% pe lună sau fracțiune de lună, potrivit Codului de procedură fiscală (regim specific creanțelor bugetare locale)."},
+      {t:"Somația și titlul executoriu",x:"Se comunică debitorului; executarea silită începe după 15 zile de la comunicare, dacă obligația nu este stinsă."},
+      {t:"Măsuri de executare",x:"Poprire asupra conturilor și veniturilor, sechestru asupra bunurilor mobile și imobile, valorificare prin licitație publică."},
+      {t:"Stingerea creanței",x:"Prin plată, compensare, executare silită, prescripție (termen general de 5 ani), insolvabilitate, anulare sau scutire potrivit legii."}
+    ]},
+    {t:"note",k:"info",b:"Facilități și proceduri",x:"Organul fiscal local poate acorda <b>eșalonări la plată</b>, poate anula creanțele fiscale mai mici decât plafonul stabilit prin hotărâre a consiliului local și poate scoate din evidență debitorii declarați insolvabili, în condițiile Codului de procedură fiscală."},
+    {t:"note",k:"law",b:"Temeiuri",x:"Legea nr. 227/2015 privind Codul fiscal, Titlul IX „Impozite și taxe locale”; Legea nr. 207/2015 privind Codul de procedură fiscală; HG nr. 1/2016 (Norme metodologice); Legea nr. 273/2006."}
+  ]
+},
+/* --------------------------------------------------------------- 13 */
+{
+  id:"achizitii", group:"Bani publici", ico:"🛒",
+  title:"Achizițiile publice",
+  eyebrow:"Contractare",
+  lede:"Principii, planificare, praguri valorice, proceduri, documente obligatorii și căi de atac — cu un calculator de praguri.",
+  blocks:[
+    {t:"p",x:"Autoritățile administrației publice locale sunt <b>autorități contractante</b> și atribuie contractele de achiziție publică potrivit Legii nr. 98/2016 și HG nr. 395/2016. Procedurile se derulează, ca regulă, prin mijloace electronice, în <b>SEAP / SICAP</b> (www.e-licitatie.ro)."},
+    {t:"h",x:"Principiile achizițiilor publice"},
+    {t:"chips",x:["Nediscriminarea","Tratamentul egal","Recunoașterea reciprocă","Transparența","Proporționalitatea","Asumarea răspunderii"]},
+    {t:"h",x:"Ciclul achiziției"},
+    {t:"steps",x:[
+      {t:"Identificarea necesității",x:"Compartimentele întocmesc <b>referate de necesitate</b>, fundamentate valoric, până la data stabilită de conducere (de regulă în trimestrul IV, pentru anul următor)."},
+      {t:"Programul anual al achizițiilor publice (PAAP)",x:"Se elaborează pe baza referatelor și a proiectului de buget, se aprobă de conducătorul autorității și se actualizează ori de câte ori este necesar; se publică în SEAP."},
+      {t:"Estimarea valorii",x:"Valoarea estimată se calculează <b>fără TVA</b>, pentru întreaga durată a contractului, incluzând opțiunile și prelungirile. Este interzisă <b>divizarea artificială</b> a contractului pentru a evita aplicarea procedurii."},
+      {t:"Alegerea procedurii",x:"În funcție de valoarea estimată, de obiect și de circumstanțe; pentru procedurile de atribuire se elaborează <b>strategia de contractare</b>."},
+      {t:"Documentația de atribuire",x:"Caiet de sarcini sau documentație descriptivă, fișa de date, DUAE, criterii de calificare, criteriul de atribuire, modelul de contract, formulare."},
+      {t:"Derularea procedurii",x:"Publicarea anunțului, răspunsuri la clarificări, depunerea ofertelor, evaluarea de către comisia de evaluare, raportul procedurii, comunicarea rezultatului."},
+      {t:"Semnarea contractului",x:"După expirarea termenului de așteptare; se constituie garanția de bună execuție și se desemnează responsabilul de contract."},
+      {t:"Executarea și monitorizarea",x:"Recepții, plăți, eventuale modificări contractuale în condițiile art. 221, aplicarea penalităților, finalizarea și arhivarea dosarului achiziției."}
+    ]},
+    {t:"h",x:"Praguri valorice"},
+    {t:"note",k:"law",b:"Valori aplicabile în perioada 2026–2027",x:"Pragurile europene se actualizează din doi în doi ani prin regulamente delegate ale Comisiei Europene și se exprimă în lei la cursul stabilit prin notificare ANAP. Valorile de mai jos se aplică <b>de la 1 ianuarie 2026</b> (Regulamentele delegate (UE) 2025/2150, 2025/2151 și 2025/2152). Pragurile pentru <b>achiziția directă</b> sunt sume fixe în lei, prevăzute de art. 7 alin. (5) din Legea nr. 98/2016, nemodificate din 2022."},
+    {t:"table",head:["Tip de contract","Prag (lei, fără TVA)","Echivalent EUR"],rows:[
+      ["Lucrări","26.960.556","5.404.000"],
+      ["Produse și servicii — autorități centrale","698.460","140.000"],
+      ["Produse și servicii — autorități <b>subcentrale</b> (UAT-uri)","1.077.624","216.000"],
+      ["Servicii sociale și alte servicii specifice","3.741.750","750.000"],
+      ["<b>Achiziție directă</b> — produse și servicii","sub 270.120","—"],
+      ["<b>Achiziție directă</b> — lucrări","sub 900.400","—"]
+    ],cap:"Verificați întotdeauna ultima notificare ANAP înainte de a stabili procedura."},
+    {t:"widget",w:"praguri"},
+    {t:"h",x:"Procedurile de atribuire"},
+    {t:"table",head:["Procedură","Când se folosește"],rows:[
+      ["Licitație deschisă","Procedura de bază, la sau peste pragurile europene; orice operator poate depune ofertă."],
+      ["Licitație restrânsă","În două etape: selecția candidaților, apoi depunerea ofertelor."],
+      ["Negociere competitivă","Nevoi care nu pot fi satisfăcute fără adaptarea soluțiilor disponibile, soluții inovatoare, riscuri specifice."],
+      ["Dialog competitiv","Proiecte complexe, unde soluția tehnică sau juridică nu poate fi definită de la început."],
+      ["Parteneriat pentru inovare","Dezvoltarea și achiziția ulterioară a unui produs, serviciu sau lucrări inovatoare."],
+      ["Negociere fără publicare prealabilă","Situații excepționale, strict prevăzute de lege (urgență extremă imprevizibilă, furnizor unic, absența ofertelor)."],
+      ["Concurs de soluții","Planuri sau proiecte, mai ales în urbanism, arhitectură, prelucrarea datelor."],
+      ["Procedura simplificată","Sub pragurile europene și peste pragurile achiziției directe."],
+      ["Achiziția directă","Sub pragurile de la art. 7 alin. (5); se realizează, de regulă, prin catalogul electronic din SEAP."]
+    ]},
+    {t:"note",k:"info",b:"Termene minime uzuale (procedura simplificată)",x:"10 zile pentru contractele de produse și servicii; 6 zile pentru produse de complexitate redusă; 15 zile pentru contractele de lucrări — calculate de la transmiterea spre publicare a anunțului (art. 113 din Legea nr. 98/2016). Pentru licitația deschisă, termenul standard este de 35 de zile, cu reducerile permise de lege."},
+    {t:"h",x:"Criterii de atribuire"},
+    {t:"ul",x:[
+      "<b>Prețul cel mai scăzut</b> — pentru achiziții standardizate, unde calitatea este definită complet prin caietul de sarcini.",
+      "<b>Costul cel mai scăzut</b> — pe baza costului ciclului de viață.",
+      "<b>Cel mai bun raport calitate–preț</b> — factori de evaluare privind calitatea, experiența personalului, termenul de garanție, impactul de mediu.",
+      "<b>Cel mai bun raport calitate–cost</b> — combinație între costul ciclului de viață și factori calitativi."
+    ]},
+    {t:"h",x:"Garanții, modificări și dosarul achiziției"},
+    {t:"ul",x:[
+      "<b>Garanția de participare</b> — maximum 1% din valoarea estimată a contractului, fără TVA.",
+      "<b>Garanția de bună execuție</b> — maximum 10% din prețul contractului, fără TVA; se constituie prin virament, instrument de garantare sau rețineri succesive.",
+      "<b>Modificarea contractului</b> (art. 221) — posibilă fără procedură nouă în cazurile expres prevăzute: clauze de revizuire clare, lucrări sau servicii suplimentare necesare, circumstanțe imprevizibile, modificări nesubstanțiale sub pragurile de minimis (10% pentru produse și servicii, 15% pentru lucrări, fără depășirea pragurilor europene).",
+      "<b>Dosarul achiziției publice</b> — se întocmește pentru fiecare achiziție și se păstrează cel puțin 5 ani de la data încheierii contractului; conține toate documentele procedurii.",
+      "<b>Conflictul de interese</b> — se previne prin declarațiile prevăzute la art. 59–60; persoanele cu funcție de decizie se nominalizează în fișa de date."
+    ]},
+    {t:"h",x:"Căi de atac"},
+    {t:"table",head:["Aspect","Regulă"],rows:[
+      ["Notificarea prealabilă","Se transmite autorității contractante înainte de contestație, în termenele Legii nr. 101/2016."],
+      ["Contestația","La Consiliul Național de Soluționare a Contestațiilor (CNSC) sau la instanță; termen de 10 zile pentru achiziții la/peste pragurile europene și 5 zile sub aceste praguri, calculate de la luarea la cunoștință."],
+      ["Termenul de așteptare înainte de semnarea contractului","11 zile pentru achizițiile la/peste pragurile europene; 6 zile sub aceste praguri."],
+      ["Cauțiunea","Se constituie pentru introducerea contestației, în cuantumul prevăzut de lege, raportat la valoarea estimată."]
+    ]},
+    {t:"note",k:"law",b:"Temeiuri",x:"Legea nr. 98/2016 și HG nr. 395/2016 (achiziții clasice); Legea nr. 99/2016 (sectoriale); Legea nr. 100/2016 (concesiuni); Legea nr. 101/2016 (remedii și căi de atac); OUG nr. 13/2015 privind ANAP; notificările și instrucțiunile ANAP."}
+  ]
+},
+/* --------------------------------------------------------------- 14 */
+{
+  id:"patrimoniu", group:"Patrimoniu și servicii", ico:"🏘",
+  title:"Patrimoniul unității administrativ-teritoriale",
+  eyebrow:"Bunuri",
+  lede:"Domeniul public și domeniul privat, inventarul, modurile de administrare și valorificare.",
+  blocks:[
+    {t:"p",x:"Patrimoniul UAT este alcătuit din <b>bunurile mobile și imobile</b> aflate în proprietatea publică și în proprietatea privată a unității administrativ-teritoriale, precum și din <b>drepturile și obligațiile</b> cu caracter patrimonial."},
+    {t:"h",x:"Domeniul public vs. domeniul privat"},
+    {t:"table",head:["Criteriu","Domeniul public","Domeniul privat"],rows:[
+      ["Conținut","Bunuri de uz sau de interes public: drumuri comunale, străzi, piețe, parcuri, rețele de apă și canalizare, cimitire, clădiri administrative, terenuri aferente","Toate celelalte bunuri aflate în proprietatea UAT: terenuri, locuințe, spații comerciale, bunuri dobândite prin donații sau succesiuni vacante"],
+      ["Regim juridic","<b>Inalienabil, imprescriptibil, insesizabil</b> — nu poate fi înstrăinat, dobândit prin uzucapiune sau executat silit","Supus, ca regulă, dreptului comun; poate fi vândut, schimbat, ipotecat, dacă legea nu dispune altfel"],
+      ["Modalități de valorificare","Dare în administrare, concesionare, închiriere, dare în folosință gratuită","Vânzare, concesionare, închiriere, dare în folosință gratuită, aport la capitalul social"],
+      ["Încetare","Dezafectare din domeniul public prin hotărâre a autorității deliberative, dacă bunul a pierdut uzul sau interesul public","Potrivit dreptului comun"]
+    ]},
+    {t:"h",x:"Inventarul bunurilor"},
+    {t:"ul",x:[
+      "Inventarul bunurilor din domeniul public al UAT se întocmește și se actualizează de o <b>comisie special constituită</b>, condusă de autoritatea executivă, și se <b>însușește prin hotărâre</b> a autorității deliberative.",
+      "Inventarul cuprinde: denumirea bunului, elementele de identificare, anul dobândirii sau dării în folosință, valoarea de inventar, situația juridică.",
+      "Bunurile se înregistrează în <b>contabilitate</b> și se corelează cu evidența cadastrală și cu cartea funciară.",
+      "Inventarierea anuală a patrimoniului se efectuează potrivit OMFP nr. 2.861/2009, iar rezultatele se valorifică în situațiile financiare."
+    ]},
+    {t:"h",x:"Modalități de administrare și valorificare"},
+    {t:"table",head:["Modalitate","Beneficiar","Regulă de bază"],rows:[
+      ["Darea în administrare","Instituții publice, regii autonome, alte autorități","Prin hotărâre a autorității deliberative; titularul exercită posesia, folosința și dispoziția administrativă"],
+      ["Concesionarea","Persoane fizice sau juridice","Prin licitație publică; contractul prevede redevența, durata (maximum 49 de ani, cu posibilitatea prelungirii) și investițiile"],
+      ["Închirierea","Persoane fizice sau juridice","Prin licitație publică, cu excepțiile prevăzute de lege; chiria se face venit la bugetul local"],
+      ["Darea în folosință gratuită","Persoane juridice fără scop lucrativ, de utilitate publică sau de binefacere","Pe termen limitat, prin hotărâre; bunul se restituie în starea în care a fost primit"],
+      ["Vânzarea (doar domeniul privat)","Persoane fizice sau juridice","Prin licitație publică, cu excepțiile legale; hotărârea se adoptă cu majoritate calificată (2/3)"]
+    ]},
+    {t:"note",k:"warn",b:"Erori frecvente",x:"Înstrăinarea sau grevarea unui bun din domeniul public; închirierea sau concesionarea fără licitație, în afara cazurilor permise; lipsa evaluării bunului înainte de valorificare; neactualizarea inventarului după recepția investițiilor; neînregistrarea în cartea funciară; stabilirea redevenței sub nivelul rezultat din raportul de evaluare."},
+    {t:"note",k:"law",b:"Temeiuri",x:"Codul civil, art. 858–875; OUG nr. 57/2019, Partea a V-a (art. 285–364); Legea nr. 7/1996 a cadastrului și publicității imobiliare; OG nr. 81/2003 privind reevaluarea; OMFP nr. 2.861/2009."}
+  ]
+},
+/* --------------------------------------------------------------- 15 */
+{
+  id:"servicii", group:"Patrimoniu și servicii", ico:"🚰",
+  title:"Serviciile publice de utilități",
+  eyebrow:"Servicii",
+  lede:"Ce servicii asigură administrația locală, cum le gestionează și cum sunt reglementate.",
+  blocks:[
+    {t:"p",x:"Serviciile de utilități publice sunt activități de interes economic general, organizate la nivelul UAT-urilor, sub conducerea, coordonarea și responsabilitatea autorităților locale, în scopul satisfacerii nevoilor comunității."},
+    {t:"h",x:"Categorii de servicii"},
+    {t:"cards",x:[
+      {i:"💧",t:"Alimentare cu apă și canalizare",x:"Legea nr. 241/2006; operatori regionali, delegare prin ADI, tarife avizate de ANRSC."},
+      {i:"🗑️",t:"Salubrizarea localităților",x:"Legea nr. 101/2006; colectare separată, transport, tratare, depozitare; obiective de reciclare și contribuția pentru economia circulară."},
+      {i:"💡",t:"Iluminatul public",x:"Legea nr. 230/2006; întreținerea, modernizarea și extinderea sistemului; eficiență energetică."},
+      {i:"🚌",t:"Transport public local",x:"Legea nr. 92/2007 și Regulamentul (CE) nr. 1370/2007; contracte de servicii publice, compensații, obligații de serviciu public."},
+      {i:"🔥",t:"Alimentare cu energie termică",x:"Legea nr. 325/2006; producerea, transportul, distribuția și furnizarea energiei termice în sistem centralizat."},
+      {i:"🅿️",t:"Alte servicii",x:"Administrarea domeniului public, piețe și târguri, parcări, cimitire, zone verzi, deszăpezire, servicii comunitare de utilități publice locale."}
+    ]},
+    {t:"h",x:"Modalități de gestiune"},
+    {t:"table",head:["Formă","Cum funcționează","Observații"],rows:[
+      ["Gestiune directă","Serviciul este furnizat de un compartiment din aparatul de specialitate sau de o instituție/societate înființată de UAT","Se aprobă prin hotărâre; nu presupune procedură de achiziție dacă sunt îndeplinite condițiile controlului analog (in-house)"],
+      ["Gestiune delegată","Serviciul este încredințat unui operator, prin contract de delegare (concesiune de servicii sau contract de achiziție)","Atribuirea se face potrivit Legii nr. 98/2016 sau Legii nr. 100/2016, după caz"]
+    ]},
+    {t:"h",x:"Documente și instituții-cheie"},
+    {t:"ul",x:[
+      "<b>Regulamentul serviciului</b> și <b>caietul de sarcini</b> — aprobate prin hotărâre a autorității deliberative; stabilesc indicatorii de performanță.",
+      "<b>Studiul de oportunitate</b> — fundamentează alegerea modalității de gestiune.",
+      "<b>ANRSC</b> — Autoritatea Națională de Reglementare pentru Serviciile Comunitare de Utilități Publice: acordă licențe operatorilor, avizează tarifele, controlează respectarea reglementărilor.",
+      "<b>ADI</b> — asociațiile de dezvoltare intercomunitară exercită, în numele UAT-urilor membre, atribuții privind delegarea și monitorizarea serviciului.",
+      "<b>Indicatorii de performanță</b> — continuitate, calitate, timp de răspuns la reclamații, pierderi în rețea; nerealizarea lor atrage penalități contractuale."
+    ]},
+    {t:"note",k:"law",b:"Temeiuri",x:"Legea nr. 51/2006 a serviciilor comunitare de utilități publice; legile speciale pe fiecare serviciu; Legea nr. 100/2016 privind concesiunile; OUG nr. 57/2019, art. 129 alin. (7)."}
+  ]
+},
+/* --------------------------------------------------------------- 16 */
+{
+  id:"urbanism", group:"Patrimoniu și servicii", ico:"🏗",
+  title:"Urbanism și autorizarea construcțiilor",
+  eyebrow:"Teritoriu",
+  lede:"Documentațiile de urbanism, certificatul de urbanism, autorizația de construire și disciplina în construcții.",
+  blocks:[
+    {t:"h",x:"Documentațiile de amenajare a teritoriului și de urbanism"},
+    {t:"table",head:["Document","Nivel","Rol"],rows:[
+      ["PATN / PATZ / PATJ","Național, zonal, județean","Planuri de amenajare a teritoriului; stabilesc direcțiile majore de dezvoltare"],
+      ["PUG — Plan urbanistic general","UAT","Documentație cu caracter director și de reglementare; împreună cu <b>RLU</b> (regulamentul local de urbanism) constituie baza autorizării. Valabilitate de regulă 10 ani, cu posibilitatea prelungirii"],
+      ["PUZ — Plan urbanistic zonal","Zonă din localitate","Detaliază și poate modifica reglementările PUG pentru o zonă delimitată"],
+      ["PUD — Plan urbanistic de detaliu","Una sau câteva parcele","Stabilește condiții de amplasare și conformare pentru o investiție concretă, fără a modifica indicatorii urbanistici"]
+    ]},
+    {t:"h",x:"Certificatul de urbanism (CU)"},
+    {t:"ul",x:[
+      "Act de <b>informare</b> prin care se fac cunoscute regimul juridic, economic și tehnic al imobilului, cerințele urbanistice, avizele și acordurile necesare.",
+      "<b>Nu conferă dreptul de a executa lucrări</b> de construire.",
+      "Se emite în cel mult 15 zile lucrătoare de la înregistrarea cererii; valabilitatea se stabilește de emitent, între 12 și 24 de luni.",
+      "Este necesar și pentru operațiuni notariale privind circulația imobiliară, în cazurile prevăzute de lege."
+    ]},
+    {t:"h",x:"Autorizația de construire (AC)"},
+    {t:"steps",x:[
+      {t:"Obținerea certificatului de urbanism",x:"Identifică avizele, acordurile și studiile necesare."},
+      {t:"Întocmirea documentației tehnice (DTAC)",x:"Elaborată de proiectanți autorizați, verificată de verificatori de proiecte atestați."},
+      {t:"Obținerea avizelor și acordurilor",x:"Utilități, mediu, sănătate, ISU, cultură, transporturi — după caz, potrivit CU."},
+      {t:"Depunerea cererii și emiterea autorizației",x:"Autoritatea emite autorizația în cel mult <b>30 de zile</b> de la depunerea documentației complete."},
+      {t:"Anunțarea începerii lucrărilor",x:"Se comunică emitentului și Inspectoratului de Stat în Construcții; se achită cotele legale."},
+      {t:"Execuția și recepția",x:"Cu respectarea proiectului autorizat; recepția la terminarea lucrărilor și, ulterior, recepția finală; regularizarea taxei de autorizare."}
+    ]},
+    {t:"note",k:"info",b:"Valabilitate",x:"Autorizația de construire este valabilă, de regulă, 12 luni de la emitere, interval în care lucrările trebuie <b>începute</b>; durata de execuție se înscrie în autorizație. Valabilitatea poate fi prelungită, la cerere, o singură dată, cu cel mult 12 luni."},
+    {t:"h",x:"Disciplina în construcții"},
+    {t:"ul",x:[
+      "Controlul respectării disciplinei în construcții se exercită de primar, prin compartimentele de specialitate, și de <b>Inspectoratul de Stat în Construcții</b>.",
+      "Executarea de lucrări fără autorizație sau cu nerespectarea acesteia constituie <b>contravenție</b> sau, în cazurile prevăzute de lege, <b>infracțiune</b>.",
+      "Se pot dispune oprirea lucrărilor, intrarea în legalitate sau desființarea construcțiilor executate nelegal.",
+      "<b>Cotele legale</b>: 0,5% din valoarea lucrărilor către ISC și 0,5% pentru Casa Socială a Constructorilor, potrivit legii.",
+      "Nomenclatorul stradal, adresele poștale și evidența autorizațiilor se gestionează de autoritatea locală."
+    ]},
+    {t:"note",k:"law",b:"Temeiuri",x:"Legea nr. 350/2001 privind amenajarea teritoriului și urbanismul; Legea nr. 50/1991 privind autorizarea executării lucrărilor de construcții, republicată; Ordinul MDRAP nr. 839/2009 (norme metodologice); Legea nr. 10/1995 privind calitatea în construcții; HG nr. 343/2017 privind recepția construcțiilor."}
+  ]
+},
+/* --------------------------------------------------------------- 17 */
+{
+  id:"control", group:"Control și integritate", ico:"🛡",
+  title:"Control, audit și integritate",
+  eyebrow:"Verificare",
+  lede:"Cine verifică administrația locală, ce urmărește fiecare instituție și ce obligații interne există.",
+  blocks:[
+    {t:"h",x:"Cine controlează administrația publică locală"},
+    {t:"table",head:["Instituție","Ce verifică","Instrumente"],rows:[
+      ["<b>Curtea de Conturi a României</b>","Formarea, administrarea și întrebuințarea resurselor financiare ale statului și ale sectorului public; legalitatea și regularitatea operațiunilor","Audit financiar, acțiuni de control, audit de performanță; <b>decizii</b> cu măsuri obligatorii și termene; rapoarte de follow-up"],
+      ["<b>Prefectul</b>","Legalitatea actelor administrative","Solicitare de reanalizare; acțiune în contencios administrativ, cu suspendarea de drept a actului"],
+      ["<b>ANAF / inspecția fiscală</b>","Obligațiile fiscale ale UAT ca plătitor (salarii, TVA, impozite)","Inspecție fiscală, decizii de impunere"],
+      ["<b>ANAP</b>","Modul de atribuire a contractelor de achiziție publică","Control ex-ante și ex-post, notificări, îndrumare metodologică"],
+      ["<b>ANI</b>","Averea, incompatibilitățile și conflictele de interese ale aleșilor și funcționarilor","Evaluări, rapoarte de evaluare, sesizări"],
+      ["<b>ANFP</b>","Managementul funcției publice","Avize, monitorizare, control privind respectarea legislației funcției publice"],
+      ["<b>Instituțiile de audit ale fondurilor europene</b>","Utilizarea fondurilor europene","Verificări administrative și la fața locului, corecții financiare"]
+    ]},
+    {t:"h",x:"Valorificarea unei decizii a Curții de Conturi"},
+    {t:"steps",x:[
+      {t:"Raportul de control / audit",x:"Se întocmește la finalizarea acțiunii; conține constatările și se semnează cu obiecțiunile conducerii entității."},
+      {t:"Decizia",x:"Se emite de directorul camerei de conturi și conține <b>măsuri</b>, cu termene de ducere la îndeplinire."},
+      {t:"Contestația",x:"Se poate formula în termenul legal, la comisia de soluționare a contestațiilor; încheierea poate fi atacată la instanța de contencios administrativ."},
+      {t:"Planul de măsuri",x:"Entitatea elaborează un plan de acțiuni, cu responsabili și termene, aprobat de conducere."},
+      {t:"Raportarea și verificarea",x:"Entitatea comunică modul de ducere la îndeplinire; camera de conturi verifică prin acțiuni de follow-up."}
+    ]},
+    {t:"h",x:"Controlul intern al entității"},
+    {t:"cards",x:[
+      {i:"🧭",t:"Control intern managerial (SCIM)",x:"Organizat potrivit OSGG nr. 600/2018: comisia de monitorizare, programul de dezvoltare, registrul riscurilor, procedurile de sistem și operaționale, autoevaluarea anuală a celor 16 standarde."},
+      {i:"🔬",t:"Audit public intern",x:"Activitate independentă de asigurare și consiliere (Legea nr. 672/2002, HG nr. 1.086/2013). UAT-urile mici îl pot asigura prin cooperare sau prin structura de la nivelul consiliului județean."},
+      {i:"✔️",t:"Control financiar preventiv propriu",x:"Viza prealabilă asupra operațiunilor care afectează fondurile publice (OG nr. 119/1999, OMFP nr. 923/2014)."},
+      {i:"📣",t:"Avertizarea în interes public",x:"Protecția avertizorilor și canalele interne de raportare, potrivit Legii nr. 361/2022."},
+      {i:"🎯",t:"Etică și integritate",x:"Consilierul de etică, codul de conduită, planul de integritate și raportările din Strategia Națională Anticorupție."},
+      {i:"🗂️",t:"Gestiunea documentelor",x:"Arhivarea potrivit Legii nr. 16/1996, nomenclatorul arhivistic, registratura și circuitul documentelor."}
+    ]},
+    {t:"note",k:"warn",b:"Cele mai frecvente abateri constatate",x:"Plăți fără bază legală sau peste nivelul legal (salarii, sporuri, indemnizații); efectuarea de cheltuieli fără credite bugetare; nerespectarea procedurilor de achiziție; neînregistrarea sau nereevaluarea patrimoniului; nestabilirea și neîncasarea veniturilor; decontarea unor lucrări neexecutate; nerecuperarea prejudiciilor stabilite."},
+    {t:"note",k:"law",b:"Temeiuri",x:"Legea nr. 94/1992 privind organizarea și funcționarea Curții de Conturi; Legea nr. 672/2002 și HG nr. 1.086/2013; OSGG nr. 600/2018; OG nr. 119/1999; Legea nr. 176/2010; Legea nr. 361/2022."}
+  ]
+},
+/* --------------------------------------------------------------- 18 */
+{
+  id:"termene", group:"Instrumente", ico:"⏱",
+  title:"Calendar și termene-cheie",
+  eyebrow:"Memento",
+  lede:"Principalele termene legale din activitatea curentă a unei primării, într-un singur tabel.",
+  blocks:[
+    {t:"note",k:"info",b:"Cum se citește",x:"Termenele de mai jos sunt cele uzuale, prevăzute de legislația generală. Legile speciale, hotărârile de consiliu și contractele pot stabili termene proprii, mai scurte."},
+    {t:"table",head:["Termen","Obligația","Temei"],rows:[
+      ["<b>5 zile</b>","Convocarea ședinței ordinare a consiliului local","Cod administrativ, art. 134"],
+      ["<b>3 zile</b>","Convocarea ședinței extraordinare","Cod administrativ, art. 134"],
+      ["<b>3 zile</b>","Anunțarea unei ședințe publice","Legea nr. 52/2003"],
+      ["<b>30 de zile lucrătoare</b>","Anunțul privind proiectul unui act normativ","Legea nr. 52/2003, art. 7"],
+      ["<b>10 zile calendaristice</b>","Termen minim pentru propuneri la proiectul de act normativ","Legea nr. 52/2003, art. 7"],
+      ["<b>10 zile lucrătoare</b>","Comunicarea hotărârilor și dispozițiilor către prefect","Cod administrativ, art. 197"],
+      ["<b>5 zile</b>","Aducerea la cunoștință publică a actelor normative, de la comunicarea către prefect","Cod administrativ, art. 198"],
+      ["<b>10 zile</b> (30 pentru situații complexe)","Răspuns la cererea de informații de interes public","Legea nr. 544/2001, art. 7"],
+      ["<b>30 de zile</b> (+15)","Soluționarea petițiilor","OG nr. 27/2002"],
+      ["<b>45 de zile</b>","Aprobarea bugetului local de la publicarea legii bugetului de stat","Legea nr. 273/2006, art. 39"],
+      ["<b>15 zile</b>","Depunerea contestațiilor la proiectul de buget publicat","Legea nr. 273/2006, art. 39"],
+      ["<b>31 martie / 30 septembrie</b>","Plata în două rate a impozitelor locale","Codul fiscal, Titlul IX"],
+      ["<b>31 martie</b>","Plata integrală cu bonificație","Codul fiscal, Titlul IX"],
+      ["<b>30 aprilie</b>","Hotărârea privind impozitele și taxele locale pentru anul următor (regulă)","Codul fiscal, art. 491"],
+      ["<b>15 iunie</b>","Depunerea anuală a declarațiilor de avere și de interese","Legea nr. 176/2010"],
+      ["<b>30 de zile</b>","Depunerea declarațiilor de avere la numire și la încetarea mandatului/raportului","Legea nr. 176/2010"],
+      ["<b>Trimestrul IV</b>","Elaborarea programului anual al achizițiilor publice pentru anul următor","HG nr. 395/2016"],
+      ["<b>Trimestrial / anual</b>","Depunerea situațiilor financiare","Legea nr. 82/1991; OMFP nr. 1.917/2005"],
+      ["<b>Anual</b>","Inventarierea patrimoniului","OMFP nr. 2.861/2009"],
+      ["<b>Cel puțin o dată la 3 ani</b>","Reevaluarea activelor fixe corporale","OG nr. 81/2003"],
+      ["<b>15 zile lucrătoare</b>","Emiterea certificatului de urbanism","Legea nr. 50/1991"],
+      ["<b>30 de zile</b>","Emiterea autorizației de construire de la documentația completă","Legea nr. 50/1991"],
+      ["<b>30 de zile</b>","Plângerea prealabilă în contencios administrativ","Legea nr. 554/2004"],
+      ["<b>6 luni</b>","Introducerea acțiunii în contencios administrativ","Legea nr. 554/2004"],
+      ["<b>5 ani</b>","Păstrarea dosarului achiziției publice","Legea nr. 98/2016"],
+      ["<b>5 ani</b>","Prescripția dreptului de a stabili creanțe fiscale","Legea nr. 207/2015"]
+    ]}
+  ]
+},
+/* --------------------------------------------------------------- 19 */
+{
+  id:"noutati", group:"Instrumente", ico:"🆕",
+  title:"Noutăți legislative",
+  eyebrow:"Actualizat 2026",
+  lede:"Modificări recente cu impact direct asupra activității administrației publice locale.",
+  blocks:[
+    {t:"note",k:"warn",b:"Verificare obligatorie",x:"Această secțiune rezumă modificări cunoscute la data realizării ghidului. Înainte de a o folosi ca temei într-un act administrativ, confruntați informația cu textul publicat în Monitorul Oficial."},
+    {t:"h",x:"Reforma funcției publice — Legea nr. 165/2026"},
+    {t:"ul",x:[
+      "Modifică și completează Codul administrativ; publicată în Monitorul Oficial în august 2026, cu aplicare etapizată.",
+      "Introduce <b>niveluri superioare de grad profesional</b> pentru funcțiile de execuție din clasa I, ocupabile prin concurs sau examen, cu plafoane raportate la numărul total de posturi.",
+      "Extinde regimul <b>incompatibilităților și al conflictului de interese</b>, precum și obligația declarării averii și a intereselor, asupra <b>personalului contractual</b>.",
+      "Prevede că <b>mandatul de viceprimar</b> constituie vechime în muncă și în specialitate.",
+      "Adaugă un motiv nou de <b>încetare a mandatului aleșilor locali</b>: constatarea stării de incompatibilitate prin raport de evaluare definitiv sau prin hotărâre judecătorească definitivă.",
+      "Consolidează rolul <b>ANFP</b> în elaborarea politicilor de personal, avizarea cadrelor de competențe și monitorizarea personalului contractual.",
+      "Calendar: cadre de competențe (2026), actualizarea fișelor de post și transformarea unor posturi (2027), noile reguli de concurs (etapizat, până în 2030)."
+    ]},
+    {t:"h",x:"Praguri noi în achizițiile publice, de la 1 ianuarie 2026"},
+    {t:"p",x:"Comisia Europeană a actualizat pragurile pentru perioada 2026–2027 prin Regulamentele delegate (UE) 2025/2150, 2025/2151 și 2025/2152. Pentru autoritățile locale (subcentrale), pragul pentru produse și servicii este de <b>1.077.624 lei</b> (216.000 EUR), iar pentru lucrări de <b>26.960.556 lei</b> (5.404.000 EUR). Pragurile achiziției directe rămân cele din art. 7 alin. (5) din Legea nr. 98/2016: <b>270.120 lei</b> pentru produse și servicii și <b>900.400 lei</b> pentru lucrări. Detalii în capitolul <a href=\"#achizitii\">Achiziții publice</a>."},
+    {t:"h",x:"Modificări fiscale aplicabile din 2026"},
+    {t:"ul",x:[
+      "Pachetul fiscal adoptat în 2025 a modificat semnificativ <b>Titlul IX din Codul fiscal</b>, cu aplicare de la 1 ianuarie 2026.",
+      "S-a schimbat <b>modul de calcul al impozitului pe clădirile rezidențiale</b> ale persoanelor fizice și au fost eliminate o parte dintre reducerile acordate în funcție de vechimea clădirii.",
+      "Au fost restrânse <b>scutirile</b> pentru terenuri și au fost aduse în sfera impozitării anumite construcții agricole, cu reduceri pentru sere, silozuri și spații de depozitare.",
+      "Au fost modificate nivelurile impozitului pe <b>mijloacele de transport</b>, inclusiv pentru vehiculele electrice și hibride.",
+      "Consecință practică: hotărârile consiliului local privind impozitele și taxele locale, deciziile de impunere și aplicațiile informatice de taxe trebuie actualizate corespunzător."
+    ]},
+    {t:"note",k:"info",b:"Cum urmăriți modificările",x:"Portalul <a href=\"https://legislatie.just.ro\" target=\"_blank\" rel=\"noopener\">legislatie.just.ro</a> afișează forma consolidată și istoricul modificărilor fiecărui act. Pentru achiziții, notificările și instrucțiunile ANAP se publică pe <a href=\"https://anap.gov.ro\" target=\"_blank\" rel=\"noopener\">anap.gov.ro</a>."}
+  ]
+},
+/* --------------------------------------------------------------- 20 */
+{
+  id:"glosar", group:"Instrumente", ico:"📖",
+  title:"Glosar și abrevieri",
+  eyebrow:"Termeni",
+  lede:"Termenii și acronimele care apar cel mai des în documentele administrației locale.",
+  blocks:[
+    {t:"h",x:"Abrevieri uzuale"},
+    {t:"defs",x:[
+      {t:"APL",x:"Administrația publică locală."},
+      {t:"UAT",x:"Unitate administrativ-teritorială — comună, oraș, municipiu sau județ."},
+      {t:"HCL / HCJ",x:"Hotărâre a consiliului local / a consiliului județean."},
+      {t:"ROF",x:"Regulament de organizare și funcționare."},
+      {t:"MOL",x:"Monitorul Oficial Local — publicația electronică obligatorie a fiecărei UAT."},
+      {t:"ADI",x:"Asociație de dezvoltare intercomunitară."},
+      {t:"PAAP",x:"Programul anual al achizițiilor publice."},
+      {t:"SEAP / SICAP",x:"Sistemul electronic de achiziții publice (platforma www.e-licitatie.ro)."},
+      {t:"DUAE",x:"Documentul unic de achiziție european — declarație pe propria răspundere privind îndeplinirea criteriilor de calificare."},
+      {t:"ANAP",x:"Agenția Națională pentru Achiziții Publice."},
+      {t:"CNSC",x:"Consiliul Național de Soluționare a Contestațiilor."},
+      {t:"ALOP",x:"Angajare, lichidare, ordonanțare, plată — fazele execuției cheltuielilor bugetare."},
+      {t:"CFPP",x:"Control financiar preventiv propriu."},
+      {t:"SCIM",x:"Sistemul de control intern managerial."},
+      {t:"CAÎL",x:"Comisia de autorizare a împrumuturilor locale."},
+      {t:"ANRSC",x:"Autoritatea Națională de Reglementare pentru Serviciile Comunitare de Utilități Publice."},
+      {t:"ANFP",x:"Agenția Națională a Funcționarilor Publici."},
+      {t:"ANI",x:"Agenția Națională de Integritate."},
+      {t:"ISC",x:"Inspectoratul de Stat în Construcții."},
+      {t:"PUG / PUZ / PUD",x:"Plan urbanistic general / zonal / de detaliu."},
+      {t:"CU / AC / DTAC",x:"Certificat de urbanism / autorizație de construire / documentație tehnică pentru autorizarea executării lucrărilor de construire."},
+      {t:"DGASPC / SPAS",x:"Direcția generală de asistență socială și protecția copilului / serviciul public de asistență socială."}
+    ]},
+    {t:"h",x:"Termeni-cheie"},
+    {t:"defs",x:[
+      {t:"Autonomie locală",x:"Dreptul și capacitatea efectivă a autorităților locale de a soluționa și gestiona, în numele și în interesul colectivității, o parte importantă a treburilor publice, în condițiile legii."},
+      {t:"Descentralizare",x:"Transferul de competențe administrative și financiare de la nivel central către autoritățile locale, împreună cu resursele necesare."},
+      {t:"Deconcentrare",x:"Redistribuirea de competențe în interiorul aceleiași structuri centrale, către serviciile din teritoriu (direcții județene ale ministerelor)."},
+      {t:"Act administrativ",x:"Actul unilateral cu caracter individual sau normativ, emis de o autoritate publică, în regim de putere publică, în vederea organizării executării sau a executării în concret a legii."},
+      {t:"Cvorum",x:"Numărul minim de consilieri care trebuie să fie prezenți pentru ca ședința să fie legal constituită — majoritatea consilierilor în funcție."},
+      {t:"Majoritate absolută",x:"Primul număr natural strict mai mare decât jumătate din numărul total al consilierilor <b>în funcție</b>."},
+      {t:"Majoritate simplă",x:"Primul număr natural mai mare decât jumătate din numărul consilierilor <b>prezenți</b>, cu condiția îndeplinirii cvorumului."},
+      {t:"Majoritate calificată",x:"Două treimi din numărul total al consilierilor în funcție."},
+      {t:"Ordonator de credite",x:"Conducătorul instituției publice, învestit cu dreptul de a angaja și utiliza creditele bugetare aprobate."},
+      {t:"Credit bugetar",x:"Suma aprobată prin buget, reprezentând limita maximă până la care se pot angaja și efectua cheltuieli."},
+      {t:"Angajament legal / bugetar",x:"Actul juridic din care rezultă obligația de plată (contract, comandă) / rezervarea creditului bugetar necesar acoperirii acesteia."},
+      {t:"Domeniu public",x:"Ansamblul bunurilor de uz sau de interes public, cu regim juridic special: inalienabile, imprescriptibile și insesizabile."},
+      {t:"Valoare estimată",x:"Valoarea totală de plată, fără TVA, estimată de autoritatea contractantă pentru un contract de achiziție publică, care determină procedura aplicabilă."},
+      {t:"Achiziție directă",x:"Modalitate simplificată de achiziție, sub pragurile legale, realizată de regulă prin catalogul electronic din SEAP."},
+      {t:"Transparență decizională",x:"Obligația autorităților de a informa și de a consulta publicul înainte de adoptarea actelor normative."}
+    ]}
+  ]
+},
+/* --------------------------------------------------------------- 21 */
+{
+  id:"resurse", group:"Instrumente", ico:"🔗",
+  title:"Resurse și legislație",
+  eyebrow:"Referințe",
+  lede:"Surse oficiale pentru verificarea legislației și pentru activitatea curentă.",
+  blocks:[
+    {t:"h",x:"Portaluri oficiale"},
+    {t:"links",x:[
+      {t:"Portalul legislativ — legislatie.just.ro",u:"https://legislatie.just.ro",x:"Forma consolidată și istoricul modificărilor tuturor actelor normative."},
+      {t:"Monitorul Oficial al României",u:"https://monitoruloficial.ro",x:"Publicarea oficială a actelor normative."},
+      {t:"Ministerul Dezvoltării, Lucrărilor Publice și Administrației",u:"https://www.mdlpa.ro",x:"Politici privind administrația publică, urbanism, programe de investiții."},
+      {t:"Ministerul Finanțelor",u:"https://mfinante.gov.ro",x:"Finanțe publice locale, clasificație bugetară, raportări, FOREXEBUG."},
+      {t:"ANAP — Agenția Națională pentru Achiziții Publice",u:"https://anap.gov.ro",x:"Notificări, instrucțiuni, ghiduri și praguri actualizate."},
+      {t:"SEAP / SICAP — www.e-licitatie.ro",u:"https://www.e-licitatie.ro",x:"Platforma electronică de achiziții publice."},
+      {t:"Curtea de Conturi a României",u:"https://www.curteadeconturi.ro",x:"Rapoarte publice, standarde de audit, sinteze ale constatărilor."},
+      {t:"ANFP — Agenția Națională a Funcționarilor Publici",u:"https://www.anfp.gov.ro",x:"Funcția publică, concursuri, avize, evidența funcțiilor publice."},
+      {t:"ANI — Agenția Națională de Integritate",u:"https://www.integritate.eu",x:"Declarații de avere și de interese, incompatibilități."},
+      {t:"ANRSC",u:"https://www.anrsc.ro",x:"Reglementarea serviciilor comunitare de utilități publice."},
+      {t:"ANCPI — cadastru și publicitate imobiliară",u:"https://www.ancpi.ro",x:"Cadastru, carte funciară, înregistrare sistematică."},
+      {t:"Inspectoratul de Stat în Construcții",u:"https://www.isc.gov.ro",x:"Control în construcții, cote legale, reglementări tehnice."}
+    ]},
+    {t:"h",x:"Legislație de bază"},
+    {t:"table",head:["Act normativ","Domeniu"],rows:[
+      ["Constituția României","Cadrul constituțional al administrației publice locale (art. 120–123, 138)"],
+      ["OUG nr. 57/2019 — Codul administrativ","Organizarea și funcționarea administrației, actele, patrimoniul, funcția publică"],
+      ["Legea nr. 273/2006","Finanțele publice locale"],
+      ["Legea nr. 227/2015 — Codul fiscal, Titlul IX","Impozite și taxe locale"],
+      ["Legea nr. 207/2015 — Codul de procedură fiscală","Colectarea creanțelor bugetare locale"],
+      ["Legea nr. 98/2016 + HG nr. 395/2016","Achiziții publice clasice"],
+      ["Legea nr. 101/2016","Remedii și căi de atac în achiziții"],
+      ["Legea nr. 52/2003","Transparența decizională"],
+      ["Legea nr. 544/2001","Accesul la informațiile de interes public"],
+      ["Legea nr. 554/2004","Contenciosul administrativ"],
+      ["Legea nr. 51/2006","Serviciile comunitare de utilități publice"],
+      ["Legea nr. 350/2001 și Legea nr. 50/1991","Urbanism și autorizarea construcțiilor"],
+      ["Legea nr. 82/1991 și OMFP nr. 1.917/2005","Contabilitatea instituțiilor publice"],
+      ["OMFP nr. 1.792/2002; OG nr. 119/1999","ALOP și controlul financiar preventiv"],
+      ["Legea nr. 94/1992","Curtea de Conturi"],
+      ["Legea nr. 161/2003 și Legea nr. 176/2010","Incompatibilități, conflict de interese, integritate"],
+      ["Legea nr. 3/2000","Referendumul local"],
+      ["Legea nr. 199/1997","Carta europeană a autonomiei locale"]
+    ]},
+    {t:"h",x:"Despre acest ghid"},
+    {t:"p",x:"Aplicația este un singur fișier HTML, fără dependențe externe și fără colectare de date. Poate fi deschisă local (dublu clic) sau publicată gratuit prin GitHub Pages. Conținutul poate fi adaptat: textele se află în structura <code>DATA</code> din interiorul fișierului."},
+    {t:"note",k:"warn",b:"Limitări",x:"Ghidul are caracter informativ și educativ. Nu constituie consultanță juridică sau financiară și nu înlocuiește textul actelor normative în vigoare, avizul de legalitate al secretarului general ori opinia unui specialist."}
+  ]
+}
+];
+/* ====================================================================
+   APLICAȚIA — randare, navigare, căutare, instrumente
+   ==================================================================== */
+(function(){
+"use strict";
+
+var $ = function(s,c){return (c||document).querySelector(s);};
+var nav = $("#nav"), content = $("#content"), search = $("#search");
+
+/* ---------- utilitare ---------- */
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function strip(h){return String(h).replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim();}
+function fold(s){return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[țţ]/g,"t").replace(/[șş]/g,"s");}
+function nf(n){return new Intl.NumberFormat("ro-RO").format(n);}
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
+
+/* ---------- randarea blocurilor ---------- */
+function block(b, sid, hi){
+  switch(b.t){
+    case "h":
+      return '<h2 id="'+sid+'-h'+hi+'">'+b.x+'</h2>';
+    case "p":
+      return "<p>"+b.x+"</p>";
+    case "ul":
+      return '<ul class="list">'+b.x.map(function(i){return "<li>"+i+"</li>";}).join("")+"</ul>";
+    case "ol":
+      return '<ol class="list">'+b.x.map(function(i){return "<li>"+i+"</li>";}).join("")+"</ol>";
+    case "table":
+      return '<div class="table-wrap"><table>'+
+        (b.cap?"<caption>"+b.cap+"</caption>":"")+
+        "<thead><tr>"+b.head.map(function(h){return "<th>"+h+"</th>";}).join("")+"</tr></thead><tbody>"+
+        b.rows.map(function(r){return "<tr>"+r.map(function(c,i){
+          return '<td'+(i>0&&/^[\d.,\s–—-]+$/.test(strip(c))?' class="num"':"")+">"+c+"</td>";}).join("")+"</tr>";}).join("")+
+        "</tbody></table></div>";
+    case "cards":
+      return '<div class="grid c2">'+b.x.map(function(c){
+        return '<div class="card">'+(c.i?'<span class="card-ico" aria-hidden="true">'+c.i+"</span>":"")+
+          "<h4>"+c.t+"</h4><p>"+c.x+"</p></div>";}).join("")+"</div>";
+    case "note":
+      return '<div class="note '+(b.k||"info")+'">'+(b.b?"<b>"+b.b+"</b>":"")+"<p>"+b.x+"</p></div>";
+    case "steps":
+      return '<ol class="steps">'+b.x.map(function(s){
+        return "<li><b>"+s.t+"</b><span>"+s.x+"</span></li>";}).join("")+"</ol>";
+    case "defs":
+      return '<dl class="defs">'+b.x.map(function(d){
+        return "<div><dt>"+d.t+"</dt><dd>"+d.x+"</dd></div>";}).join("")+"</dl>";
+    case "chips":
+      return '<div class="chips">'+b.x.map(function(c){return '<span class="chip accent">'+c+"</span>";}).join("")+"</div>";
+    case "links":
+      return '<ul class="links">'+b.x.map(function(l){
+        return '<li><a href="'+l.u+'" target="_blank" rel="noopener"><b>'+l.t+"</b><span>"+l.x+"</span></a></li>";}).join("")+"</ul>";
+    case "widget":
+      return '<div id="w-'+b.w+'"></div>';
+    default:
+      return "";
+  }
+}
+
+/* ---------- navigație ---------- */
+function buildNav(){
+  var groups = [], map = {};
+  DATA.forEach(function(s){
+    if(!map[s.group]){ map[s.group] = []; groups.push(s.group); }
+    map[s.group].push(s);
+  });
+  nav.innerHTML = groups.map(function(g){
+    return '<div class="nav-group"><div class="nav-group-title">'+g+"</div>"+
+      map[g].map(function(s){
+        return '<a href="#'+s.id+'" data-id="'+s.id+'"><span class="ico" aria-hidden="true">'+s.ico+"</span><span>"+s.title+"</span></a>";
+      }).join("")+"</div>";
+  }).join("");
+}
+function markNav(id){
+  Array.prototype.forEach.call(nav.querySelectorAll("a"),function(a){
+    a.classList.toggle("active", a.getAttribute("data-id")===id);
+  });
+}
+
+/* ---------- randarea unei secțiuni ---------- */
+function renderSection(id){
+  var idx = DATA.findIndex(function(s){return s.id===id;});
+  if(idx<0){ idx = 0; }
+  var s = DATA[idx], hi = 0, headings = [];
+  var body = s.blocks.map(function(b,i){
+    if(b.t==="h"){ hi++; headings.push({t:strip(b.x), a:s.id+"-h"+hi}); }
+    return '<div data-b="'+i+'">'+block(b, s.id, hi)+"</div>";
+  }).join("");
+
+  var head = s.hero
+    ? '<div class="hero"><div class="page-eyebrow">'+s.eyebrow+"</div><h1>"+s.title+"</h1><p>"+s.lede+"</p></div>"
+    : '<div class="page-eyebrow">'+s.eyebrow+"</div><h1>"+s.title+'</h1><p class="lede">'+s.lede+"</p>";
+
+  var toc = headings.length>=3
+    ? '<div class="toc"><b>În acest capitol</b><ul>'+headings.map(function(h){
+        return '<li><a href="#'+h.a+'">'+esc(h.t)+"</a></li>";}).join("")+"</ul></div>"
+    : "";
+
+  var prev = DATA[idx-1], next = DATA[idx+1];
+  var pager = '<div class="pager">'+
+    (prev?'<a href="#'+prev.id+'"><div class="dir">← Anterior</div><div class="ttl">'+esc(prev.title)+"</div></a>":"<span></span>")+
+    (next?'<a class="next" href="#'+next.id+'"><div class="dir">Următor →</div><div class="ttl">'+esc(next.title)+"</div></a>":"")+
+    "</div>";
+
+  content.innerHTML = head + toc + body + pager;
+  document.title = s.title + " — Administrația Publică Locală";
+  markNav(s.id);
+  mountWidgets();
+}
+
+/* ---------- căutare ---------- */
+var INDEX = [];
+function buildIndex(){
+  DATA.forEach(function(s){
+    INDEX.push({sid:s.id, sec:s.title, b:0, txt:s.title+" "+s.lede, disp:s.lede});
+    s.blocks.forEach(function(b,i){
+      var txt = "";
+      if(b.t==="h"||b.t==="p") txt = strip(b.x);
+      else if(b.t==="ul"||b.t==="ol"||b.t==="chips") txt = b.x.map(strip).join(" · ");
+      else if(b.t==="table") txt = strip(b.head.join(" ")) + " — " + b.rows.map(function(r){return strip(r.join(" · "));}).join(" | ");
+      else if(b.t==="cards"||b.t==="steps"||b.t==="defs") txt = b.x.map(function(c){return strip(c.t)+": "+strip(c.x);}).join(" | ");
+      else if(b.t==="note") txt = (b.b?strip(b.b)+": ":"")+strip(b.x);
+      else if(b.t==="links") txt = b.x.map(function(l){return strip(l.t)+" "+strip(l.x);}).join(" | ");
+      if(txt) INDEX.push({sid:s.id, sec:s.title, b:i, txt:txt, disp:txt});
+    });
+  });
+}
+function snippet(txt, q){
+  var f = fold(txt), p = f.indexOf(q);
+  if(p<0) p = 0;
+  var start = Math.max(0, p-70), end = Math.min(txt.length, p+190);
+  var out = (start>0?"…":"") + txt.slice(start,end) + (end<txt.length?"…":"");
+  var re = new RegExp("("+q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig");
+  // evidențiere pe textul „pliat”, aplicată pozițional
+  var folded = fold(out), res = "", last = 0, m;
+  while((m = re.exec(folded))!==null){
+    res += esc(out.slice(last, m.index)) + "<mark>" + esc(out.slice(m.index, m.index+m[0].length)) + "</mark>";
+    last = m.index + m[0].length;
+    if(m[0].length===0) break;
+  }
+  res += esc(out.slice(last));
+  return res;
+}
+function runSearch(qRaw){
+  var q = fold(qRaw.trim());
+  if(q.length<2){ route(); return; }
+  var hits = [];
+  for(var i=0;i<INDEX.length && hits.length<60;i++){
+    if(fold(INDEX[i].txt).indexOf(q)>=0) hits.push(INDEX[i]);
+  }
+  markNav("");
+  content.innerHTML =
+    '<div class="results-head"><h1>Rezultate</h1><span class="lede">'+hits.length+
+      (hits.length===1?" potrivire":" potriviri")+' pentru „'+esc(qRaw.trim())+'”</span></div>'+
+    (hits.length? hits.map(function(h){
+      return '<a class="result" href="#'+h.sid+'" data-b="'+h.b+'"><div class="r-sec">'+esc(h.sec)+
+        '</div><div class="r-txt">'+snippet(h.disp, q)+"</div></a>";
+    }).join("")
+    : '<div class="empty"><p style="font-size:2rem;margin:0">⌕</p><p>Niciun rezultat. Încercați alt termen — de exemplu <b>cvorum</b>, <b>buget</b>, <b>prag</b>, <b>inventar</b>, <b>prefect</b>.</p></div>');
+  document.title = "Căutare: "+qRaw.trim()+" — Administrația Publică Locală";
+}
+
+/* ---------- instrumente interactive ---------- */
+function mountWidgets(){
+  var c = $("#w-consiliu"); if(c) c.innerHTML = consiliuHTML(), bindConsiliu();
+  var p = $("#w-praguri"); if(p) p.innerHTML = praguriHTML(), bindPraguri();
+}
+
+var SCALA = [[1500,9],[3000,11],[5000,13],[10000,15],[20000,17],[50000,19],[100000,21],[200000,23],[400000,27],[Infinity,31]];
+function consilieriPentru(loc){
+  for(var i=0;i<SCALA.length;i++) if(loc<=SCALA[i][0]) return SCALA[i][1];
+  return 31;
+}
+function consiliuHTML(){
+  return '<div class="calc">'+
+    "<h4>Calculator — componența consiliului local și majoritățile</h4>"+
+    '<p class="calc-hint">Introduceți numărul de locuitori și, opțional, numărul consilierilor prezenți la ședință.</p>'+
+    '<div class="calc-row">'+
+      '<div class="field"><label for="c-loc">Număr de locuitori</label><input id="c-loc" type="number" min="0" step="1" value="3500"></div>'+
+      '<div class="field"><label for="c-prez">Consilieri prezenți (opțional)</label><input id="c-prez" type="number" min="0" step="1" placeholder="ex. 9"></div>'+
+    "</div>"+
+    '<div class="calc-out"><div class="out-grid">'+
+      '<div class="out-box"><div class="k">Consilieri în funcție</div><div class="v" id="c-total">–</div></div>'+
+      '<div class="out-box"><div class="k">Cvorum de ședință</div><div class="v" id="c-cvorum">–</div></div>'+
+      '<div class="out-box"><div class="k">Majoritate absolută</div><div class="v" id="c-abs">–</div></div>'+
+      '<div class="out-box"><div class="k">Majoritate calificată (2/3)</div><div class="v" id="c-cal">–</div></div>'+
+    "</div>"+
+    '<div class="verdict" id="c-verdict"></div></div></div>';
+}
+function bindConsiliu(){
+  var loc = $("#c-loc"), prez = $("#c-prez");
+  function calc(){
+    var n = consilieriPentru(Math.max(0, parseInt(loc.value,10)||0));
+    var cvorum = Math.floor(n/2)+1;
+    var cal = Math.ceil(n*2/3);
+    $("#c-total").textContent = n;
+    $("#c-cvorum").textContent = cvorum;
+    $("#c-abs").textContent = cvorum;
+    $("#c-cal").textContent = cal;
+    var p = parseInt(prez.value,10);
+    var v = $("#c-verdict"), msg;
+    if(!isNaN(p) && p>0){
+      var simpla = Math.floor(p/2)+1;
+      if(p>n){
+        msg = "<b>Verificați datele</b>Numărul consilierilor prezenți ("+p+") nu poate depăși numărul consilierilor în funcție ("+n+").";
+      } else if(p < cvorum){
+        msg = "<b>Ședința nu este legal constituită</b>Cu "+p+" consilieri prezenți nu este întrunit cvorumul de "+cvorum+
+          " (majoritatea consilierilor în funcție). Ședința se reprogramează.";
+      } else {
+        msg = "<b>Ședința este legal constituită</b>Cu "+p+" consilieri prezenți: majoritate <b>simplă</b> = <b>"+simpla+
+          "</b> voturi; majoritate <b>absolută</b> = <b>"+cvorum+"</b> voturi; majoritate <b>calificată</b> = <b>"+cal+"</b> voturi.";
+      }
+    } else {
+      msg = "<b>Consiliu de "+n+" consilieri</b>Cvorumul de ședință și majoritatea absolută sunt de <b>"+cvorum+
+        "</b> consilieri, iar majoritatea calificată (2/3, pentru dobândirea sau înstrăinarea de bunuri imobile) de <b>"+cal+"</b> consilieri. "+
+        "Introduceți numărul de prezenți pentru a afla majoritatea simplă.";
+    }
+    v.innerHTML = msg;
+  }
+  loc.addEventListener("input", calc);
+  prez.addEventListener("input", calc);
+  calc();
+}
+
+var PRAG = {
+  ad_ps:270120, ad_l:900400,
+  eu_ps_sub:1077624, eu_l:26960556, eu_soc:3741750
+};
+function praguriHTML(){
+  return '<div class="calc">'+
+    "<h4>Instrument — ce procedură de achiziție se aplică</h4>"+
+    '<p class="calc-hint">Valoarea estimată se exprimă în lei, <b>fără TVA</b>, pentru întreaga durată a contractului. Praguri valabile din 1 ianuarie 2026, pentru autorități contractante <b>subcentrale</b> (UAT-uri).</p>'+
+    '<div class="calc-row">'+
+      '<div class="field"><label for="p-tip">Obiectul contractului</label><select id="p-tip">'+
+        '<option value="ps">Produse sau servicii</option>'+
+        '<option value="l">Lucrări</option>'+
+        '<option value="soc">Servicii sociale și alte servicii specifice</option>'+
+      "</select></div>"+
+      '<div class="field"><label for="p-val">Valoare estimată (lei, fără TVA)</label><input id="p-val" type="number" min="0" step="100" value="150000"></div>'+
+    "</div>"+
+    '<div class="calc-out"><div class="out-grid">'+
+      '<div class="out-box"><div class="k">Prag achiziție directă</div><div class="v" id="p-ad">–</div></div>'+
+      '<div class="out-box"><div class="k">Prag european</div><div class="v" id="p-eu">–</div></div>'+
+      '<div class="out-box"><div class="k">Până la pragul următor</div><div class="v" id="p-rest">–</div></div>'+
+    "</div>"+
+    '<div class="verdict" id="p-verdict"></div>'+
+    '<p class="calc-hint" style="margin-top:12px">Rezultatul este orientativ. Verificați notificarea ANAP în vigoare, excepțiile legale și interdicția divizării artificiale a contractului.</p>'+
+    "</div></div>";
+}
+function bindPraguri(){
+  var tip = $("#p-tip"), val = $("#p-val");
+  function calc(){
+    var t = tip.value, v = Math.max(0, parseFloat(val.value)||0);
+    var ad = (t==="l") ? PRAG.ad_l : PRAG.ad_ps;
+    var eu = (t==="l") ? PRAG.eu_l : (t==="soc" ? PRAG.eu_soc : PRAG.eu_ps_sub);
+    $("#p-ad").innerHTML = nf(ad)+' <small>lei</small>';
+    $("#p-eu").innerHTML = nf(eu)+' <small>lei</small>';
+    var next = v < ad ? ad : (v < eu ? eu : null);
+    $("#p-rest").innerHTML = next ? nf(Math.max(0, next - v))+' <small>lei</small>' : '<small>peste pragul european</small>';
+
+    var out;
+    if(v < ad){
+      out = "<b>Achiziție directă</b>Valoarea estimată este sub pragul de "+nf(ad)+" lei. Achiziția se poate realiza direct, de regulă prin catalogul electronic din SEAP, cu documentele justificative aferente (referat de necesitate, notă privind determinarea valorii estimate, comandă sau contract, recepție). Art. 7 alin. (5) din Legea nr. 98/2016.";
+    } else if(v < eu){
+      out = (t==="soc")
+        ? "<b>Procedură proprie pentru servicii sociale</b>Valoarea estimată se află între pragul achiziției directe și pragul de "+nf(eu)+" lei. Autoritatea contractantă aplică procedura proprie, stabilită prin norme interne, cu respectarea principiilor și a regulilor de publicitate (art. 111 din Legea nr. 98/2016)."
+        : "<b>Procedură simplificată</b>Valoarea estimată se află între pragul achiziției directe ("+nf(ad)+" lei) și pragul european ("+nf(eu)+" lei). Se organizează procedura simplificată, cu anunț de participare publicat în SEAP; termenele minime uzuale sunt de 10 zile pentru produse și servicii, 6 zile pentru produse de complexitate redusă și 15 zile pentru lucrări (art. 113).";
+    } else {
+      out = (t==="soc")
+        ? "<b>Procedură de atribuire cu publicitate europeană</b>Valoarea estimată depășește pragul de "+nf(eu)+" lei pentru servicii sociale. Se aplică licitația deschisă, licitația restrânsă sau negocierea competitivă, cu publicarea anunțului în Jurnalul Oficial al Uniunii Europene."
+        : "<b>Procedură de atribuire cu publicitate europeană</b>Valoarea estimată este la sau peste pragul de "+nf(eu)+" lei. Se aplică una dintre procedurile prevăzute de lege — de regulă licitația deschisă — cu publicarea anunțului de participare în Jurnalul Oficial al Uniunii Europene și aplicarea DUAE.";
+    }
+    $("#p-verdict").innerHTML = out;
+  }
+  tip.addEventListener("change", calc);
+  val.addEventListener("input", calc);
+  calc();
+}
+
+/* ---------- rutare ---------- */
+var pendingBlock = null;
+function route(){
+  var h = (location.hash||"").replace(/^#/,"");
+  if(!h){ renderSection(DATA[0].id); window.scrollTo(0,0); return; }
+  var sec = DATA.find(function(s){return s.id===h;});
+  if(sec){
+    renderSection(h);
+    if(pendingBlock!==null){
+      var el = content.querySelector('[data-b="'+pendingBlock+'"]');
+      pendingBlock = null;
+      if(el){
+        el.classList.add("flash");
+        setTimeout(function(){ el.scrollIntoView({block:"center", behavior:"smooth"}); }, 30);
+        setTimeout(function(){ el.classList.remove("flash"); }, 2200);
+        return;
+      }
+    }
+    window.scrollTo(0,0);
+  } else {
+    // ancoră internă (ex. #acte-h2) — ne asigurăm că secțiunea este randată
+    var base = h.replace(/-h\d+$/,"");
+    var s2 = DATA.find(function(x){return x.id===base;});
+    if(s2){
+      if(!content.querySelector("#"+CSS.escape(h))) renderSection(base);
+      var t = document.getElementById(h);
+      if(t) t.scrollIntoView({block:"start", behavior:"smooth"});
+    }
+  }
+  document.body.classList.remove("nav-open");
+}
+
+/* ---------- inițializare ---------- */
+buildNav();
+buildIndex();
+route();
+window.addEventListener("hashchange", route);
+
+content.addEventListener("click", function(e){
+  var r = e.target.closest ? e.target.closest(".result") : null;
+  if(r){
+    pendingBlock = parseInt(r.getAttribute("data-b"),10);
+    search.value = "";
+    if(location.hash === r.getAttribute("href")){ e.preventDefault(); route(); }
+  }
+});
+nav.addEventListener("click", function(){ document.body.classList.remove("nav-open"); });
+
+var tmr;
+search.addEventListener("input", function(){
+  clearTimeout(tmr);
+  var v = search.value;
+  tmr = setTimeout(function(){ runSearch(v); }, 140);
+});
+search.addEventListener("keydown", function(e){
+  if(e.key==="Escape"){ search.value=""; search.blur(); route(); }
+});
+document.addEventListener("keydown", function(e){
+  if(e.key==="/" && document.activeElement!==search){ e.preventDefault(); search.focus(); search.select(); }
+});
+
+/* temă */
+var themeBtn = $("#themeBtn");
+var saved = store("apl-theme");
+if(saved){ document.documentElement.setAttribute("data-theme", saved); }
+else if(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
+  document.documentElement.setAttribute("data-theme","dark");
+}
+themeBtn.addEventListener("click", function(){
+  var cur = document.documentElement.getAttribute("data-theme")==="dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", cur);
+  store("apl-theme", cur);
+});
+
+$("#printBtn").addEventListener("click", function(){ window.print(); });
+$("#menuBtn").addEventListener("click", function(){ document.body.classList.toggle("nav-open"); });
+$("#scrim").addEventListener("click", function(){ document.body.classList.remove("nav-open"); });
+$("#footYear").textContent = "Actualizat: 2026 · " + DATA.length + " capitole · fișier unic HTML, fără dependențe externe";
+
+})();
+</script>
+</body>
+</html>
